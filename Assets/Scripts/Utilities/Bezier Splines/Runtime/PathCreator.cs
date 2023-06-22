@@ -23,4 +23,15 @@ public class PathCreator : MonoBehaviour
     {
         CreatePath();
     }
+    
+    [ContextMenu("Reset Y")]
+    public void SetY()
+    {
+        for (int i = 0; i < path.Points.Count; i++)
+        {
+            var newPoint = path.Points[i];
+            newPoint.y = 0;
+            path.Points[i] = newPoint;
+        }
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,23 +6,23 @@ using UnityEngine;
 public class Path 
 {
     [SerializeField] private List<Vector3> points;
-    [SerializeField, HideInInspector] public bool isClosed;
+    public List<Vector3> Points => points;
 
+    [SerializeField, HideInInspector] public bool isClosed;
     [SerializeField, HideInInspector] private bool autoSetControlPoints;
     
-    public Path(Vector2 centre)
+    public Path(Vector3 centre)
     {
         points = new List<Vector3>()
         {
-            centre + Vector2.left,
-            centre + (Vector2.left + Vector2.up) * 0.5f,
-            centre + (Vector2.right + Vector2.down) * 0.5f,
-            centre + Vector2.right
+            centre + Vector3.left,
+            centre + (Vector3.left + Vector3.up) * 0.5f,
+            centre + (Vector3.right + Vector3.down) * 0.5f,
+            centre + Vector3.right
         };
     }
-
+    
     public Vector3 this[int i] => points[i];
-
     public bool IsClosed
     {
         get => isClosed;
@@ -54,13 +55,9 @@ public class Path
             }
         }
     }
-    
     public bool AutoSetControlPoints
     {
-        get
-        {
-            return autoSetControlPoints;
-        }
+        get => autoSetControlPoints;
         set
         {
             if (autoSetControlPoints != value)
@@ -76,12 +73,15 @@ public class Path
     public int NumPoints => points.Count;
     public int NumSegments => points.Count / 3;
 
+    public Action<Vector3> OnPointAdded;
+    public Action<Vector3> OnPointRemoved;
+
     public void AddSegment(Vector3 anchorPos)
     {
         points.Add(points[^1] * 2 - points[^2]);
         points.Add((points[^1] + anchorPos) * 0.5f);
         points.Add(anchorPos);
-
+        
         if (autoSetControlPoints)
         {
             AutoSetAllAffectedControlPoints(points.Count - 1);
@@ -112,6 +112,7 @@ public class Path
                 {
                     points[^1] = points[2];
                 }
+                
                 points.RemoveRange(0, 3);
             }
             else if (anchorIndex == points.Count - 1 && !isClosed)
@@ -124,7 +125,7 @@ public class Path
             }
         }
     }
-    
+
     public Vector3[] GetPointsInSegment(int i)
     {
         return new Vector3[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex(i * 3 + 3)] };
@@ -177,7 +178,7 @@ public class Path
         return GetPoint(t).normalized;
     }
     
-    public Vector3 GetPoint (float t) 
+    public Vector3 GetPoint(float t) 
     {
         int i;
         
@@ -311,5 +312,17 @@ public class Path
     int LoopIndex(int i)
     {
         return (i + points.Count) % points.Count;
+    }
+    
+    public List<Vector3> GetControlPoints()
+    {
+        List<Vector3> controlPoints = new List<Vector3>();
+        
+        for (int i = 0; i < points.Count; i+=3)
+        {
+            controlPoints.Add(points[i]);    
+        }
+
+        return controlPoints;
     }
 }

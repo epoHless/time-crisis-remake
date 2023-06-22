@@ -16,21 +16,20 @@ public class PathEditor : Editor
 
         EditorGUI.BeginChangeCheck();
         
+        bool autoSetControlPoints = GUILayout.Toggle(Path.AutoSetControlPoints, "Auto Set Control Points");
+        bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
+
         if (GUILayout.Button("Create New"))
         {
             Undo.RecordObject(creator, "Create New");
             creator.CreatePath();
         }
 
-        bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
-
         if (isClosed != Path.IsClosed)
         {
             Undo.RecordObject(creator, "Toggle Closed");
             Path.IsClosed = isClosed;
         }
-
-        bool autoSetControlPoints = GUILayout.Toggle(Path.AutoSetControlPoints, "auto Set Control Points");
 
         if (autoSetControlPoints != Path.AutoSetControlPoints)
         {
@@ -65,7 +64,9 @@ public class PathEditor : Editor
             else if(!Path.IsClosed)
             {
                 Undo.RecordObject(creator, "Added Segment");
-                Path.AddSegment(mousePos);
+                var pos = mousePos;
+                pos.y = 0;
+                Path.AddSegment(pos);
             }
         }
 
