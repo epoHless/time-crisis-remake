@@ -157,6 +157,7 @@ MonoBehaviour:
   lookForward: 0
   duration: 20
   mode: 0
+  move: 1
 --- !u!4 &192875504
 Transform:
   m_ObjectHideFlags: 0
@@ -168,10 +169,109 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 585524084}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &585524083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585524084}
+  - component: {fileID: 585524087}
+  - component: {fileID: 585524086}
+  - component: {fileID: 585524085}
+  m_Layer: 0
+  m_Name: Mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &585524084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585524083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 192875504}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &585524085
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585524083}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &585524086
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585524083}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &585524087
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585524083}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,8 +363,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1381086100}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -342,13 +442,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1381086100}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225774568
 GameObject:
@@ -408,7 +508,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 705507995}
+  - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,20 +577,26 @@ MonoBehaviour:
   creator: {fileID: 1827207723}
   checkpoints:
   - point: {x: -0.662, y: 0, z: 0.351}
-    <ShouldStop>k__BackingField: 0
+    <TriggerArea>k__BackingField: 1
+    checkpointData: {fileID: 11400000, guid: 8ee44139ec25e174a8ac4897c9015130, type: 2}
+  - point: {x: -3.4613776, y: 0, z: 10.536498}
+    <TriggerArea>k__BackingField: 1
+    checkpointData: {fileID: 11400000, guid: 5153608256c8dd142aa6e9a285f2678a, type: 2}
+  - point: {x: -1.7407928, y: 0, z: 11.385442}
+    <TriggerArea>k__BackingField: 0
     checkpointData: {fileID: 0}
-  - point: {x: 1.338, y: 0, z: 0.351}
-    <ShouldStop>k__BackingField: 0
+  - point: {x: -0.9249898, y: 0, z: 19.480358}
+    <TriggerArea>k__BackingField: 1
+    checkpointData: {fileID: 11400000, guid: bc4911482b82b654d9de32e90384326b, type: 2}
+  - point: {x: -0.3119539, y: 0, z: 21.293156}
+    <TriggerArea>k__BackingField: 0
     checkpointData: {fileID: 0}
-  - point: {x: 2.6076198, y: 0, z: -0.7347635}
-    <ShouldStop>k__BackingField: 0
-    checkpointData: {fileID: 0}
-  - point: {x: 4.546578, y: 0, z: 0.18369062}
-    <ShouldStop>k__BackingField: 0
-    checkpointData: {fileID: 0}
-  - point: {x: 7.4244013, y: -0.001953125, z: -0.15307583}
-    <ShouldStop>k__BackingField: 0
-    checkpointData: {fileID: 0}
+  - point: {x: -3.7396111, y: 0, z: 29.176176}
+    <TriggerArea>k__BackingField: 1
+    checkpointData: {fileID: 11400000, guid: 529a9fc58fab4774bac9977d6554a11c, type: 2}
+  - point: {x: 0.18717754, y: 0, z: 35.188072}
+    <TriggerArea>k__BackingField: 1
+    checkpointData: {fileID: 11400000, guid: 0d650e5ef1e20934b8353ccb6ec43885, type: 2}
 --- !u!4 &1480312962
 Transform:
   m_ObjectHideFlags: 0
@@ -567,17 +675,32 @@ MonoBehaviour:
   path:
     points:
     - {x: -0.662, y: 0, z: 0.351}
-    - {x: -0.162, y: 0.5, z: 0.351}
-    - {x: 0.838, y: -0.5, z: 0.351}
-    - {x: 1.338, y: 0, z: 0.351}
+    - {x: -4.3405066, y: 0, z: 2.0273569}
+    - {x: -4.1344438, y: 0, z: 10.568299}
+    - {x: -3.4613776, y: 0, z: 10.536498}
+    - {x: -2.6559043, y: 0, z: 10.498441}
+    - {x: -2.1976557, y: 0, z: 10.815077}
+    - {x: -1.7407928, y: 0, z: 11.385442}
+    - {x: 0.12512904, y: 0, z: 13.71493}
+    - {x: -1.218589, y: 0, z: 19.294048}
+    - {x: -0.9249898, y: 0, z: 19.480358}
+    - {x: 0.0470165, y: 0, z: 20.097166}
+    - {x: 0.046365142, y: 0, z: 20.579363}
+    - {x: -0.3119539, y: 0, z: 21.293156}
+    - {x: -2.2593324, y: 0, z: 25.17245}
+    - {x: -3.3033838, y: 0, z: 26.298225}
+    - {x: -3.7396111, y: 0, z: 29.176176}
+    - {x: -4.217681, y: 0, z: 32.330177}
+    - {x: 1.2433901, y: 0, z: 32.140594}
+    - {x: 0.18717754, y: 0, z: 35.188072}
     isClosed: 0
     autoSetControlPoints: 0
-  anchorColor: {r: 1, g: 0, b: 0, a: 1}
+  anchorColor: {r: 0.33490568, g: 0.5194699, b: 1, a: 1}
   controlColor: {r: 1, g: 1, b: 1, a: 1}
   segmentColor: {r: 0, g: 1, b: 0, a: 1}
   selectedSegmentColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  anchorDiameter: 0.1
-  controlDiameter: 0.075
+  anchorDiameter: 0.25
+  controlDiameter: 0.15
   displayControlPoint: 1
 --- !u!4 &1827207724
 Transform:

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -43,16 +44,12 @@ public class PathEditor : Editor
         }
     }
 
-    private void OnSceneGUI()
-    {
-        Input();
-        Draw();
-    }
-
     void Input()
     {
         Event guiEvent = Event.current;
-        Vector2 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
+
+        Vector3 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
+        mousePos = new Vector3(mousePos.x, 0, mousePos.z);
 
         if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift)
         {
@@ -92,7 +89,7 @@ public class PathEditor : Editor
                 Path.DeleteSegment(closestAnchorIndex);
             }
         }
-
+        
         if (guiEvent.type == EventType.MouseMove)
         {
             float minDistanceToSegment = segmentSelectDistanceThreshold;
@@ -119,7 +116,13 @@ public class PathEditor : Editor
         
         HandleUtility.AddDefaultControl(0);
     }
-    
+
+    private void OnSceneGUI()
+    {
+        Input();
+        Draw();
+    }
+
     void Draw()
     {
         for (int i = 0; i < Path.NumSegments; i++)

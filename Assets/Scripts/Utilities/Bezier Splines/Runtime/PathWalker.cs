@@ -91,6 +91,11 @@ public class PathWalker : MonoBehaviour
     private void OnStageStart(CheckpointData _checkpoint)
     {
         move = false;
+
+        if (_checkpoint)
+        {
+            duration = _checkpoint.Speed;
+        }
     }
 
     #endregion

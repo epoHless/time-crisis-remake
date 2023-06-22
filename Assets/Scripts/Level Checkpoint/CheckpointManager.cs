@@ -46,8 +46,6 @@ public class CheckpointManager : MonoBehaviour
 
         if (checkpoint != null)
         {
-            Debug.Log("Checkpoint Reached!");
-
             if (checkpoint.TriggerArea)
             {
                 EventManager.OnStageStart?.Invoke(checkpoint.checkpointData);
@@ -60,7 +58,7 @@ public class CheckpointManager : MonoBehaviour
     #endregion
 
     [ContextMenu("Add Control Points")]
-    private void SetControlPoints()
+    public void SetControlPoints()
     {
         if (!creator) return;
         
@@ -75,9 +73,14 @@ public class CheckpointManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        foreach (var checkpoint in checkpoints)
+        for (int i = 0; i < checkpoints.Count; i++)
         {
-            Gizmos.DrawSphere(checkpoint.point, 0.1f);
+            if(checkpoints[i].TriggerArea)
+            {
+                Gizmos.DrawSphere(checkpoints[i].point, 0.25f);
+
+                // if(i < checkpoints.Count - 1) Gizmos.DrawLine(checkpoints[i].point, checkpoints[i + 1].point);
+            }
         }
     }
 }
