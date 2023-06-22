@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.epohless.hierarchyenhancer": {
+      "version": "https://github.com/epoHless/hierarchy-enhancer.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "90f90855a3a6b3f85c963e28d7faca226abcf5ab"
+    },
     "com.epohless.ssoevents": {
       "version": "https://github.com/epoHless/sso-events.git",
       "depth": 0,

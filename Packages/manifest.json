@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.epohless.hierarchyenhancer": "https://github.com/epoHless/hierarchy-enhancer.git",
     "com.epohless.ssoevents": "https://github.com/epoHless/sso-events.git",
     "com.unity.collab-proxy": "1.17.2",
     "com.unity.feature.development": "1.0.1",

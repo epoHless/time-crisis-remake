@@ -13,15 +13,11 @@ MonoBehaviour:
   m_Name: LabelPreset_Separators
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  fontStyle: 1
-  alignment: 4
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  useCustomBackground: 1
-  backgroundColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
+  fontStyle: 0
+  alignment: 3
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  useCustomBackground: 0
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0}
   tooltips: []
-  gameObjects:
-  - ID: MANAGERS
-  - ID: SETUP
-  - ID: ENVIROMENT
-  - ID: CANVASES
+  gameObjects: []
   isActive: 1
