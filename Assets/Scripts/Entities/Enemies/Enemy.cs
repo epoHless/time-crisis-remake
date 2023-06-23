@@ -8,7 +8,13 @@ namespace Entities
     {
         #region Fields
 
-        [SerializeField] private List<Behaviour> behaviours;
+        [SerializeReference] private List<Behaviour> behaviours;
+
+        #endregion
+
+        #region Properties
+
+        public List<Behaviour> Behaviours => behaviours;
 
         #endregion
 
@@ -31,11 +37,16 @@ namespace Entities
 
         #region Methods
 
-        public override void Initialise()
+        protected override void Initialise()
         {
             transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.InOutBack).onComplete += () =>
             {
                 Debug.Log($"{gameObject.name} is init!");
+                
+                foreach (var behaviour in behaviours)
+                {
+                    behaviour.IsEnabled = true;
+                }
             };
         }
 

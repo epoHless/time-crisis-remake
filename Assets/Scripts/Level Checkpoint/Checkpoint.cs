@@ -22,7 +22,7 @@ public class Checkpoint
     {
         foreach (var entity in entities)
         {
-            entity.Initialise();
+            entity.Enable();
         }
     }
 }

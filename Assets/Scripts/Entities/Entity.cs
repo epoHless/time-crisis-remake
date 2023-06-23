@@ -6,8 +6,9 @@ namespace Entities
     {
         private bool isActive;
 
-        bool IsActive
+        private bool IsActive
         {
+            get => isActive;
             set
             {
                 isActive = value;
@@ -17,10 +18,15 @@ namespace Entities
 
         #region Methods
 
-        public void Enable() => isActive = true;
-        public void Disable() => isActive = false;
+        public bool IsEnabled()
+        {
+            return isActive;
+        }
+        
+        public void Enable() => IsActive = true;
+        public void Disable() => IsActive = false;
 
-        public abstract void Initialise();
+        protected abstract void Initialise();
 
         #endregion
 

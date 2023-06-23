@@ -24,4 +24,5 @@ MonoBehaviour:
   - ID: ENVIROMENT
   - ID: CANVASES
   - ID: SETUP
+  - ID: PATHS
   isActive: 1
