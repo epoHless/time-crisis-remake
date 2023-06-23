@@ -1,30 +1,48 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class Enemy : Entity
+namespace Entities
 {
-    #region Unity Methods
-
-    protected virtual void Start()
+    public class Enemy : Entity
     {
-        transform.localScale = Vector3.zero;
-    }
+        #region Fields
 
-    #endregion
-    
-    #region Methods
+        [SerializeField] private List<Behaviour> behaviours;
 
-    public override void Initialise()
-    {
-        transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.InOutBack).onComplete += () =>
+        #endregion
+
+        #region Unity Methods
+
+        protected virtual void Start()
         {
-            Debug.Log($"{gameObject.name} is init!");
-        };
+            transform.localScale = Vector3.zero;
+        }
+
+        private void Update()
+        {
+            foreach (var behaviour in behaviours)
+            {
+                if (behaviour.IsEnabled) behaviour.Tick(this);
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public override void Initialise()
+        {
+            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.InOutBack).onComplete += () =>
+            {
+                Debug.Log($"{gameObject.name} is init!");
+            };
+        }
+
+        public override void OnDeath()
+        {
+        }
+
+        #endregion
     }
-
-    public override void OnDeath()
-    { }
-
-    #endregion
 }
