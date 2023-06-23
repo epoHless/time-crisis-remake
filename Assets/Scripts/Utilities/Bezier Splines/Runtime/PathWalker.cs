@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BezierSplines;
+using UnityEngine;
 
 public class PathWalker : MonoBehaviour 
 {

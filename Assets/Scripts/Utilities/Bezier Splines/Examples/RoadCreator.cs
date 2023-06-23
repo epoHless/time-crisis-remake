@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BezierSplines;
+using UnityEngine;
 
 [RequireComponent(typeof(PathCreator),
     typeof(MeshFilter), 

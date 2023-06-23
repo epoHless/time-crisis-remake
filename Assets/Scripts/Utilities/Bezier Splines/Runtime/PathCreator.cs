@@ -1,37 +1,40 @@
 using UnityEngine;
 
-public class PathCreator : MonoBehaviour
+namespace BezierSplines
 {
-    public Path path;
-
-    public Color anchorColor = Color.red;
-    public Color controlColor = Color.white;
-    public Color segmentColor = Color.green;
-    public Color selectedSegmentColor = Color.yellow;
-
-    public float anchorDiameter = 0.1f;
-    public float controlDiameter = 0.075f;
-
-    public bool displayControlPoint = true;
-    
-    public void CreatePath()
+    public class PathCreator : MonoBehaviour
     {
-        path = new Path(transform.position);
-    }
+        public Path path;
 
-    void Reset()
-    {
-        CreatePath();
-    }
-    
-    [ContextMenu("Reset Y")]
-    public void SetY()
-    {
-        for (int i = 0; i < path.Points.Count; i++)
+        public Color anchorColor = Color.red;
+        public Color controlColor = Color.white;
+        public Color segmentColor = Color.green;
+        public Color selectedSegmentColor = Color.yellow;
+
+        public float anchorDiameter = 0.1f;
+        public float controlDiameter = 0.075f;
+
+        public bool displayControlPoint = true;
+
+        public void CreatePath()
         {
-            var newPoint = path.Points[i];
-            newPoint.y = 0;
-            path.Points[i] = newPoint;
+            path = new Path(transform.position);
+        }
+
+        void Reset()
+        {
+            CreatePath();
+        }
+
+        [ContextMenu("Reset Y")]
+        public void SetY()
+        {
+            for (int i = 0; i < path.Points.Count; i++)
+            {
+                var newPoint = path.Points[i];
+                newPoint.y = 0;
+                path.Points[i] = newPoint;
+            }
         }
     }
 }

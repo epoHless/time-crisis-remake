@@ -1,4 +1,5 @@
 ﻿using System;
+using BezierSplines;
 using UnityEngine;
 
 public class PathPlacer : MonoBehaviour

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BezierSplines;
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
