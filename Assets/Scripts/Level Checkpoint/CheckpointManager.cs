@@ -19,7 +19,8 @@ public class CheckpointManager : MonoBehaviour
     }
 
     [SerializeField] private List<Checkpoint> checkpoints;
-
+    private Checkpoint currentCheckpoint;
+    
     #region Unity Methods
 
     private void Awake()
@@ -47,11 +48,14 @@ public class CheckpointManager : MonoBehaviour
 
         if (checkpoint != null)
         {
+            currentCheckpoint = checkpoint;
+
             if (checkpoint.TriggerArea)
             {
-                EventManager.OnStageStart?.Invoke(checkpoint.checkpointData);
+                currentCheckpoint.Initialise();
+                EventManager.OnStageStart?.Invoke();
             }
-            
+
             checkpoints.Remove(checkpoint);
         }
     }

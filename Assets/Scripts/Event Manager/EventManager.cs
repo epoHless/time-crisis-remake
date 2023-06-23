@@ -10,7 +10,7 @@ public static class EventManager
 
     #region Level Events
 
-    public static Evt<CheckpointData> OnStageStart = new Evt<CheckpointData>();
+    public static Evt OnStageStart = new Evt();
     public static Evt OnStageEnd = new Evt();
 
     #endregion

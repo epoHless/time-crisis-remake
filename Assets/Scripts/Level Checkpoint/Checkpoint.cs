@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Checkpoint
@@ -8,9 +9,19 @@ public class Checkpoint
         point = _point;
         TriggerArea = false;
     }
-    
-    public Vector3 point;
-    
+
     [field: SerializeField] public bool TriggerArea { get; private set; }
-    public CheckpointData checkpointData;
+    
+    [SerializeField] private List<Entity> entities;
+
+    
+    [HideInInspector] public Vector3 point;
+
+    public void Initialise()
+    {
+        foreach (var entity in entities)
+        {
+            entity.Initialise();
+        }
+    }
 }
