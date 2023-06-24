@@ -43,6 +43,8 @@ public class ShootingComponent : MonoBehaviour
     {
         currentAmmo--;
         
+        EventManager.OnBulletChanged?.Invoke(currentAmmo);
+        
         Ray ray = cam.ScreenPointToRay(InputManager.MousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -51,6 +53,8 @@ public class ShootingComponent : MonoBehaviour
             {
                 damageable.TakeDamage(1);
             }
+            
+            EventManager.OnBulletHit?.Invoke(hit.point);
         }
 
         if (currentAmmo <= 0)
@@ -63,12 +67,16 @@ public class ShootingComponent : MonoBehaviour
     {
         InputManager.ToggleShooting(false);
 
+        currentAmmo = capacity;
+        
         var sequence = DOTween.Sequence().AppendInterval(.5f);
 
         sequence.onComplete += () =>
         {
             InputManager.ToggleShooting(true);
         };
+        
+        EventManager.OnBulletChanged?.Invoke(currentAmmo);
     }
 
     #endregion
