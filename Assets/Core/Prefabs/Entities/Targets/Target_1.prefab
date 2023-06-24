@@ -240,7 +240,7 @@ MonoBehaviour:
   Creator: {fileID: 0}
   tollerance: 0.15
   lookForward: 0
-  duration: 0
+  duration: 5
   mode: 2
   move: 0
 --- !u!136 &976074564

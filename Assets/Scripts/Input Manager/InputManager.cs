@@ -1,10 +1,15 @@
-﻿public static class InputManager
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
+
+public static class InputManager
 {
     private static PlayerInputActions _inputActions;
     private static bool _isInit;
 
     public static PlayerInputActions.PlayerActions Player => _inputActions.Player;
     public static PlayerInputActions.UIActions UI => _inputActions.UI;
+
+    public static Vector2 MousePosition => Mouse.current.position.ReadValue();
     
     static InputManager()
     {
@@ -16,6 +21,7 @@
         if (_isInit) return;
         
         _inputActions ??= new PlayerInputActions();
+        _inputActions.Enable();
         _isInit = true;
     }
 

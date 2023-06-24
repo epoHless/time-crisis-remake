@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Entities
@@ -19,6 +20,15 @@ namespace Entities
             }
         }
 
+        #region Unity Methods
+
+        private void Awake()
+        {
+            Collider = GetComponent<CapsuleCollider>();
+        }
+
+        #endregion
+        
         #region Methods
 
         public bool IsEnabled()
@@ -37,6 +47,8 @@ namespace Entities
 
         [SerializeField] private int health;
 
+        public CapsuleCollider Collider { get; set; }
+
         public int Health
         {
             get => health;
@@ -46,6 +58,7 @@ namespace Entities
         public virtual void OnDeath()
         {
             Debug.Log($"{gameObject.name} died");
+            EventManager.OnEnemyKilled?.Invoke(this);
         }
 
         #endregion

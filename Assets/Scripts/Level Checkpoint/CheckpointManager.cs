@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BezierSplines;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField] private PathCreator creator;
 
     [SerializeField] private List<Checkpoint> checkpoints;
-    private Checkpoint currentCheckpoint;
+    [SerializeField] private Checkpoint currentCheckpoint;
 
     #endregion
 

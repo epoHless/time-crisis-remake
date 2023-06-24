@@ -11,7 +11,7 @@ public class PathWalker : MonoBehaviour
     public bool lookForward;
     
     public float duration;
-    private float progress;
+    protected float progress;
 
     public SplineWalkerMode mode;
     private bool goingForward = true;
@@ -22,19 +22,7 @@ public class PathWalker : MonoBehaviour
 
     #region Unity Methods
 
-    private void OnEnable()
-    {
-        EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
-        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
-        EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
-    }
-
-    private void Update()
+    protected virtual void Update()
     {
         if (!move) return;
         
@@ -68,30 +56,6 @@ public class PathWalker : MonoBehaviour
                 goingForward = true;
             }
         }
-
-        Vector3 position = Creator.path.GetPoint(progress);
-        transform.localPosition = position;
-        
-        if (lookForward) transform.LookAt(position + Creator.path.GetDirection(progress));
-
-        if (Vector3.Distance(transform.localPosition, position) <= tollerance)
-        {
-            EventManager.OnCheckpointReached?.Invoke(position);
-        }
-    }
-
-    #endregion
-
-    #region Methods
-
-    private void OnCheckpointCleared()
-    {
-        move = true;
-    }
-
-    private void OnCheckpointStart()
-    {
-        move = false;
     }
 
     #endregion

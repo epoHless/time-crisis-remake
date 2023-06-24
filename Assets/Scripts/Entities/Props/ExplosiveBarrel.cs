@@ -6,11 +6,17 @@ namespace Entities
 {
     public class ExplosiveBarrel : Entity
     {
+        #region Fields
+
         [SerializeField] private int damage;
         [SerializeField, Range(1, 20)] private float explosionRange;
 
         [SerializeField] private GameObject mesh;
-        [field: SerializeField] public ParticleSystem ExplosionParticles { get; set; }
+        [SerializeField] private ParticleSystem explosionParticles;
+
+        #endregion
+
+        #region Methods
 
         public override void OnDeath()
         {
@@ -24,7 +30,7 @@ namespace Entities
                 {
                     if (collider.TryGetComponent(out IDamageable damageable))
                     {
-                        damageable.TakeDamage(damage);
+                        if(damageable != this) damageable.TakeDamage(damage);
                     }
                 }
             }
@@ -45,13 +51,19 @@ namespace Entities
 
         private void PlayParticle()
         {
-            ExplosionParticles.Play(true);
+            explosionParticles.Play(true);
         }
+
+        #endregion
+
+        #region Unity Methods
 
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, explosionRange);
         }
+
+        #endregion
     }
 }

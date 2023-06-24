@@ -16,4 +16,14 @@ public static class EventManager
     public static Evt<Entities.Entity> OnEnemyKilled = new Evt<Entities.Entity>();
 
     #endregion
+
+    #region Player Events
+
+    #region Shooting Events
+
+    public static Evt<int> OnBulletFired = new Evt<int>();
+
+    #endregion
+
+    #endregion
 }
