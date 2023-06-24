@@ -21,7 +21,9 @@ public static class EventManager
 
     #region Shooting Events
 
-    public static Evt<int> OnBulletChanged = new Evt<int>();
+    public static Evt<int> OnBulletFired = new Evt<int>();
+    public static Evt OnReload = new Evt();
+    
     public static Evt<Vector3> OnBulletHit = new Evt<Vector3>();
 
     #endregion

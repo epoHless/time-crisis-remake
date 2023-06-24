@@ -23,11 +23,17 @@ public class ShootingComponent : MonoBehaviour
     private void OnEnable()
     {
         InputManager.Player.Shoot.performed += Shoot;
+        
+        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
+        EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
     }
 
     private void OnDisable()
     {
         InputManager.Player.Shoot.performed -= Shoot;
+        
+        EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
+        EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
     }
 
     private void Start()
@@ -39,11 +45,21 @@ public class ShootingComponent : MonoBehaviour
 
     #region Event Methods
 
+    private void OnCheckpointCleared()
+    {
+        InputManager.ToggleShooting(false);
+    }
+    
+    private void OnCheckpointStart()
+    {
+        InputManager.ToggleShooting(true);
+    }
+    
     private void Shoot(InputAction.CallbackContext obj)
     {
         currentAmmo--;
         
-        EventManager.OnBulletChanged?.Invoke(currentAmmo);
+        EventManager.OnBulletFired?.Invoke(currentAmmo);
         
         Ray ray = cam.ScreenPointToRay(InputManager.MousePosition);
 
@@ -57,7 +73,7 @@ public class ShootingComponent : MonoBehaviour
             EventManager.OnBulletHit?.Invoke(hit.point);
         }
 
-        if (currentAmmo <= 0)
+        if (currentAmmo == 0)
         {
             Reload();
         }
@@ -69,14 +85,13 @@ public class ShootingComponent : MonoBehaviour
 
         currentAmmo = capacity;
         
-        var sequence = DOTween.Sequence().AppendInterval(.5f);
+        var sequence = DOTween.Sequence().AppendInterval(.35f);
 
         sequence.onComplete += () =>
         {
             InputManager.ToggleShooting(true);
+            EventManager.OnReload?.Invoke();
         };
-        
-        EventManager.OnBulletChanged?.Invoke(currentAmmo);
     }
 
     #endregion
