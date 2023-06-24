@@ -4,6 +4,8 @@ namespace BezierSplines
 {
     public class PathCreator : MonoBehaviour
     {
+        #region Fields
+
         public Path path;
 
         public Color anchorColor = Color.red;
@@ -15,6 +17,10 @@ namespace BezierSplines
         public float controlDiameter = 0.075f;
 
         public bool displayControlPoint = true;
+
+        #endregion
+
+        #region Methods
 
         public void CreatePath()
         {
@@ -36,5 +42,7 @@ namespace BezierSplines
                 path.Points[i] = newPoint;
             }
         }
+
+        #endregion
     }
 }

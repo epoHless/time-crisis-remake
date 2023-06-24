@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Entities
 {
     public abstract class Entity : MonoBehaviour, IDamageable
     {
+        protected virtual Sequence Sequence { get; set; }
+
         private bool isActive;
 
         private bool IsActive
@@ -26,7 +29,7 @@ namespace Entities
         public void Enable() => IsActive = true;
         public void Disable() => IsActive = false;
 
-        protected abstract void Initialise();
+        protected virtual void Initialise() { Debug.Log($"{gameObject.name} is init!"); }
 
         #endregion
 
@@ -40,7 +43,10 @@ namespace Entities
             set => health = value;
         }
 
-        public abstract void OnDeath();
+        public virtual void OnDeath()
+        {
+            Debug.Log($"{gameObject.name} died");
+        }
 
         #endregion
     }

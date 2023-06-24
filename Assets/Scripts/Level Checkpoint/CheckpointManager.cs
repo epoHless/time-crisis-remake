@@ -5,7 +5,16 @@ using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private PathCreator creator;
+
+    [SerializeField] private List<Checkpoint> checkpoints;
+    private Checkpoint currentCheckpoint;
+
+    #endregion
+
+    #region Properties
 
     public PathCreator Creator
     {
@@ -18,8 +27,7 @@ public class CheckpointManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private List<Checkpoint> checkpoints;
-    private Checkpoint currentCheckpoint;
+    #endregion
     
     #region Unity Methods
 
@@ -31,16 +39,29 @@ public class CheckpointManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnCheckpointReached.AddListener(OnCheckpointReached);
+        EventManager.OnEnemyKilled.AddListener(OnEnemyKilled);
     }
 
     private void OnDisable()
     {
         EventManager.OnCheckpointReached.RemoveListener(OnCheckpointReached);
+        EventManager.OnEnemyKilled.RemoveListener(OnEnemyKilled);
     }
 
+    private void OnDrawGizmos()
+    {
+        for (int i = 0; i < checkpoints.Count; i++)
+        {
+            if(checkpoints[i].TriggerArea)
+            {
+                Gizmos.DrawSphere(checkpoints[i].point, 0.25f);
+            }
+        }
+    }
+    
     #endregion
 
-    #region Events
+    #region Event Methods
 
     private void OnCheckpointReached(Vector3 position)
     {
@@ -53,14 +74,27 @@ public class CheckpointManager : MonoBehaviour
             if (checkpoint.TriggerArea)
             {
                 currentCheckpoint.Initialise();
-                EventManager.OnStageStart?.Invoke();
+                EventManager.OnCheckpointStart?.Invoke();
             }
 
             checkpoints.Remove(checkpoint);
         }
     }
+    
+    private void OnEnemyKilled(Entities.Entity _enemy)
+    {
+        if (currentCheckpoint.Contains(_enemy))
+        {
+            if (currentCheckpoint.RemoveEntity(_enemy))
+            {
+                EventManager.OnCheckpointCleared?.Invoke();
+            }
+        }
+    }
 
     #endregion
+
+    #region Methods
 
     [ContextMenu("Add Control Points")]
     public void SetControlPoints()
@@ -76,16 +110,5 @@ public class CheckpointManager : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < checkpoints.Count; i++)
-        {
-            if(checkpoints[i].TriggerArea)
-            {
-                Gizmos.DrawSphere(checkpoints[i].point, 0.25f);
-
-                // if(i < checkpoints.Count - 1) Gizmos.DrawLine(checkpoints[i].point, checkpoints[i + 1].point);
-            }
-        }
-    }
+    #endregion
 }

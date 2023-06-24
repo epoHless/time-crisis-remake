@@ -10,8 +10,10 @@ public static class EventManager
 
     #region Level Events
 
-    public static Evt OnStageStart = new Evt();
-    public static Evt OnStageEnd = new Evt();
+    public static Evt OnCheckpointStart = new Evt();
+    public static Evt OnCheckpointCleared = new Evt();
+
+    public static Evt<Entities.Entity> OnEnemyKilled = new Evt<Entities.Entity>();
 
     #endregion
 }

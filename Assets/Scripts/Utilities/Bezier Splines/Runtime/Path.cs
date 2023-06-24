@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +7,7 @@ namespace BezierSplines
 
     public class Path
     {
-        [SerializeField] private List<Vector3> points;
-        public List<Vector3> Points => points;
-
-        [SerializeField, HideInInspector] public bool isClosed;
-        [SerializeField, HideInInspector] private bool autoSetControlPoints;
+        #region Constructor
 
         public Path(Vector3 centre)
         {
@@ -25,7 +20,25 @@ namespace BezierSplines
             };
         }
 
+        #endregion
+        
+        #region Fields
+
+        [SerializeField] private List<Vector3> points;
+        public List<Vector3> Points => points;
+
+        [SerializeField, HideInInspector] public bool isClosed;
+        [SerializeField, HideInInspector] private bool autoSetControlPoints;
+
+        #endregion
+
+        #region Operator Overloads
+
         public Vector3 this[int i] => points[i];
+
+        #endregion
+
+        #region Properties
 
         public bool IsClosed
         {
@@ -79,8 +92,9 @@ namespace BezierSplines
         public int NumPoints => points.Count;
         public int NumSegments => points.Count / 3;
 
-        public Action<Vector3> OnPointAdded;
-        public Action<Vector3> OnPointRemoved;
+        #endregion
+
+        #region Segment Manipulaton
 
         public void AddSegment(Vector3 anchorPos)
         {
@@ -132,10 +146,9 @@ namespace BezierSplines
             }
         }
 
-        public Vector3[] GetPointsInSegment(int i)
-        {
-            return new Vector3[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex(i * 3 + 3)] };
-        }
+        #endregion
+
+        #region Methods
 
         public void MovePoint(int i, Vector3 pos)
         {
@@ -183,6 +196,13 @@ namespace BezierSplines
             }
         }
 
+        #region Getters
+
+        public Vector3[] GetPointsInSegment(int i)
+        {
+            return new Vector3[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex(i * 3 + 3)] };
+        }
+        
         public Vector3 GetDirection(float t)
         {
             return GetPoint(t).normalized;
@@ -208,53 +228,22 @@ namespace BezierSplines
             return Bezier.EvaluateQubic(
                 points[i], points[i + 1], points[i + 2], points[i + 3], t);
         }
-
-        public Vector3[] CalculateEvenlySpacedPoints(float spacing, float resolution = 1)
+        
+        public List<Vector3> GetControlPoints()
         {
-            List<Vector3> spacedPoints = new List<Vector3>();
-            spacedPoints.Add(points[0]);
-            Vector3 previousPoint = points[0];
+            List<Vector3> controlPoints = new List<Vector3>();
 
-            float distanceSiceLastEvenPoint = 0;
-
-            for (int segmentIndex = 0; segmentIndex < NumSegments; segmentIndex++)
+            for (int i = 0; i < points.Count; i += 3)
             {
-                Vector3[] p = GetPointsInSegment(segmentIndex);
-
-                float controlNetLenght = Vector3.Distance(p[0], p[1]) + Vector3.Distance(p[1], p[2]) +
-                                         Vector3.Distance(p[2], p[3]);
-                float estimatedCurveLenght = Vector3.Distance(p[0], p[3]) + controlNetLenght / 2f;
-                int divisions = Mathf.CeilToInt(estimatedCurveLenght * resolution * 10);
-
-                float t = 0;
-
-                while (t <= 1)
-                {
-                    t += 1f / divisions;
-                    Vector3 pointOnCurve = Bezier.EvaluateQubic(p[0], p[1], p[2], p[3], t);
-                    distanceSiceLastEvenPoint += Vector3.Distance(previousPoint, pointOnCurve);
-
-                    while (distanceSiceLastEvenPoint >= spacing)
-                    {
-                        float overShootDistance = distanceSiceLastEvenPoint - spacing;
-
-                        Vector3 newEvenlySpacedPoint =
-                            pointOnCurve + (previousPoint - pointOnCurve).normalized * overShootDistance;
-
-                        spacedPoints.Add(newEvenlySpacedPoint);
-
-                        distanceSiceLastEvenPoint = overShootDistance;
-                        previousPoint = newEvenlySpacedPoint;
-                    }
-
-                    previousPoint = pointOnCurve;
-                }
+                controlPoints.Add(points[i]);
             }
 
-            spacedPoints.Add(!isClosed ? points[^1] : points[0]);
-
-            return spacedPoints.ToArray();
+            return controlPoints;
         }
+
+        #endregion
+
+        #region Autosettings
 
         void AutoSetAllAffectedControlPoints(int updatedAnchorIndex)
         {
@@ -320,21 +309,64 @@ namespace BezierSplines
             }
         }
 
+        #endregion
+
+        #region Caluculations
+
+        public Vector3[] CalculateEvenlySpacedPoints(float spacing, float resolution = 1)
+        {
+            List<Vector3> spacedPoints = new List<Vector3>();
+            spacedPoints.Add(points[0]);
+            Vector3 previousPoint = points[0];
+
+            float distanceSiceLastEvenPoint = 0;
+
+            for (int segmentIndex = 0; segmentIndex < NumSegments; segmentIndex++)
+            {
+                Vector3[] p = GetPointsInSegment(segmentIndex);
+
+                float controlNetLenght = Vector3.Distance(p[0], p[1]) + Vector3.Distance(p[1], p[2]) +
+                                         Vector3.Distance(p[2], p[3]);
+                float estimatedCurveLenght = Vector3.Distance(p[0], p[3]) + controlNetLenght / 2f;
+                int divisions = Mathf.CeilToInt(estimatedCurveLenght * resolution * 10);
+
+                float t = 0;
+
+                while (t <= 1)
+                {
+                    t += 1f / divisions;
+                    Vector3 pointOnCurve = Bezier.EvaluateQubic(p[0], p[1], p[2], p[3], t);
+                    distanceSiceLastEvenPoint += Vector3.Distance(previousPoint, pointOnCurve);
+
+                    while (distanceSiceLastEvenPoint >= spacing)
+                    {
+                        float overShootDistance = distanceSiceLastEvenPoint - spacing;
+
+                        Vector3 newEvenlySpacedPoint =
+                            pointOnCurve + (previousPoint - pointOnCurve).normalized * overShootDistance;
+
+                        spacedPoints.Add(newEvenlySpacedPoint);
+
+                        distanceSiceLastEvenPoint = overShootDistance;
+                        previousPoint = newEvenlySpacedPoint;
+                    }
+
+                    previousPoint = pointOnCurve;
+                }
+            }
+
+            spacedPoints.Add(!isClosed ? points[^1] : points[0]);
+
+            return spacedPoints.ToArray();
+        }
+
         int LoopIndex(int i)
         {
             return (i + points.Count) % points.Count;
         }
 
-        public List<Vector3> GetControlPoints()
-        {
-            List<Vector3> controlPoints = new List<Vector3>();
+#endregion
 
-            for (int i = 0; i < points.Count; i += 3)
-            {
-                controlPoints.Add(points[i]);
-            }
-
-            return controlPoints;
-        }
+        #endregion
     }
 }

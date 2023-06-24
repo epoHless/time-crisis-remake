@@ -22,7 +22,7 @@ namespace Entities
 
         protected virtual void Start()
         {
-            transform.localScale = Vector3.zero;
+            // transform.localScale = Vector3.zero;
         }
 
         private void Update()
@@ -52,6 +52,15 @@ namespace Entities
 
         public override void OnDeath()
         {
+            Sequence ??= DOTween.Sequence()
+                .Append(transform.DOScale(Vector3.zero, .2f).SetEase(Ease.InOutBounce))
+                .Append(transform.DOShakePosition(.2f, 0.1f, 3))
+                .Append(transform.DOShakeScale(.2f));
+
+            Sequence.onComplete += () =>
+            {
+                gameObject.SetActive(false);
+            };
         }
 
         #endregion

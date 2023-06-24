@@ -14,6 +14,7 @@ namespace Entities
         public override void OnInspectorGUI()
         {
             script ??= (Enemy)target;
+            
             base.OnInspectorGUI();
 
             GUILayout.BeginHorizontal();
@@ -33,7 +34,6 @@ namespace Entities
             
             behaviour = EditorGUILayout.Popup("", behaviour, new[] { "Movement", "Shooting" }, GUILayout.Width(100));
             GUILayout.EndHorizontal();
-
         }
     }
 }

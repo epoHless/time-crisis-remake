@@ -24,14 +24,14 @@ public class PathWalker : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnStageStart.AddListener(OnStageStart);
-        EventManager.OnStageEnd.AddListener(OnStageEnd);
+        EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
+        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
     }
 
     private void OnDisable()
     {
-        EventManager.OnStageStart.RemoveListener(OnStageStart);
-        EventManager.OnStageEnd.RemoveListener(OnStageEnd);
+        EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
+        EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
     }
 
     private void Update()
@@ -84,12 +84,12 @@ public class PathWalker : MonoBehaviour
 
     #region Methods
 
-    private void OnStageEnd()
+    private void OnCheckpointCleared()
     {
         move = true;
     }
 
-    private void OnStageStart()
+    private void OnCheckpointStart()
     {
         move = false;
     }

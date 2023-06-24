@@ -7,5 +7,5 @@
         Health--;
         if(Health <= 0) OnDeath();
     }
-    public abstract void OnDeath();
+    public void OnDeath();
 }

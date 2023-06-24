@@ -5,8 +5,8 @@ namespace Entities
     [System.Serializable]
     public abstract class Behaviour
     {
-        [field: SerializeField] public bool IsEnabled { get; set; }
+        [field: SerializeField] public virtual bool IsEnabled { get; set; }
 
-        public abstract void Tick(Entity _entity);
+        public virtual void Tick(Entity _entity){}
     }
 }
