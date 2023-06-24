@@ -1,23 +1,22 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletParticle : MonoBehaviour
 {
-    private ParticleSystem particleSystem;
+    private ParticleSystem particles;
     private ParticleSystem.MainModule emittersModule;
     
     #region Unity Methods
 
     private void Awake()
     {
-        particleSystem = GetComponent<ParticleSystem>();
-        emittersModule = particleSystem.main;
+        particles = GetComponent<ParticleSystem>();
+        emittersModule = particles.main;
     }
     
     protected virtual void OnEnable()
     {
         emittersModule.stopAction = ParticleSystemStopAction.Callback;
-        particleSystem.Play(true);
+        particles.Play(true);
     }
 
     protected virtual void OnDisable()

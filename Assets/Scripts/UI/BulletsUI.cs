@@ -42,8 +42,6 @@ public class BulletsUI : MonoBehaviour
 
     private void OnBulletFired(int _value)
     {
-        Debug.Log(_value);
-        
         var endPos = new Vector3(50, 50);
 
         bulletObjects[_value].transform.DOLocalRotate(Vector3.forward * -45, 0.3f).SetEase(Ease.OutBack);
