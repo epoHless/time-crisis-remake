@@ -82,13 +82,14 @@ public class CheckpointManager : MonoBehaviour
     
     private void OnEnemyKilled(Entities.Entity _enemy)
     {
-        if (currentCheckpoint.Contains(_enemy))
-        {
-            if (currentCheckpoint.RemoveEntity(_enemy))
-            {
-                EventManager.OnCheckpointCleared?.Invoke();
-            }
-        }
+        if (!currentCheckpoint.Contains(_enemy)) return;
+        
+        currentCheckpoint.RemoveEntity(_enemy);
+            
+        if (currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
+            currentCheckpoint.Initialise();
+        else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
+            EventManager.OnCheckpointCleared?.Invoke();
     }
 
     #endregion

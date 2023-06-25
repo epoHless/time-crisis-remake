@@ -18,7 +18,8 @@ public class Checkpoint
 
     #region Fields
 
-    [SerializeField] private List<Entity> entities;
+    [SerializeField] private List<Wave> waves;
+    [SerializeField] private Wave currentWave;
 
     [HideInInspector] public Vector3 point;
 
@@ -34,7 +35,10 @@ public class Checkpoint
 
     public void Initialise()
     {
-        foreach (var entity in entities)
+        currentWave = waves[0];
+        waves.Remove(currentWave);
+        
+        foreach (var entity in currentWave.entities)
         {
             entity.Enable();
         }
@@ -42,19 +46,25 @@ public class Checkpoint
 
     public bool Contains(Entity _entity)
     {
-        return entities.Contains(_entity);
+        if (currentWave.entities.Contains(_entity)) return true;
+
+        return false;
     }
 
-    public bool RemoveEntity(Entity _entity)
+    public void RemoveEntity(Entity _entity)
     {
-        if (entities.Contains(_entity)) entities.Remove(_entity);
-        return IsCleared();
+        if (currentWave.entities.Contains(_entity)) currentWave.entities.Remove(_entity);
     }
 
-    private bool IsCleared()
+    public bool IsCleared()
     {
-        var enemies = entities.Where(entity => entity is Enemy).ToList();
+        var enemies = currentWave.entities.Where(entity => entity is Enemy).ToList();
         return enemies.Count <= 0;
+    }
+
+    public bool HasWavesLeft()
+    {
+        return waves.Count > 0;
     }
 
     #endregion
