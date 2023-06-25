@@ -46,17 +46,6 @@ public class CheckpointManager : MonoBehaviour
         EventManager.OnCheckpointReached.RemoveListener(OnCheckpointReached);
         EventManager.OnEnemyKilled.RemoveListener(OnEnemyKilled);
     }
-
-    private void OnDrawGizmos()
-    {
-        for (int i = 0; i < checkpoints.Count; i++)
-        {
-            if(checkpoints[i].TriggerArea)
-            {
-                Gizmos.DrawSphere(checkpoints[i].point, 0.25f);
-            }
-        }
-    }
     
     #endregion
 
@@ -89,7 +78,12 @@ public class CheckpointManager : MonoBehaviour
         if (currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
             currentCheckpoint.Initialise();
         else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
-            EventManager.OnCheckpointCleared?.Invoke();
+        {
+            if(checkpoints.Count > 0)
+                EventManager.OnCheckpointCleared?.Invoke();
+            else 
+                EventManager.OnGameOver?.Invoke();
+        }
     }
 
     #endregion

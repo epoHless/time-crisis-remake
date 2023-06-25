@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -36,6 +35,6 @@ public class TimerUI : MonoBehaviour
     
     private void OnCheckpointCleared()
     {
-        countdownTime.DOScale(1.1f, 0.25f).SetLoops(2, LoopType.Yoyo);
+        countdownTime.DOFontSize(60f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 }
