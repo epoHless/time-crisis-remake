@@ -1,7 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public static class EventManager
 {
+    #region Game Events
+
+    public static Evt OnGameOver = new Evt();
+
+    #endregion
+    
+    #region Timer Events
+
+    public static Evt OnTimeAdded = new Evt();
+    
+    public static Evt<TimerTick> OnCountdownTick = new Evt<TimerTick>();
+    public static Evt<TimerTick> OnTimeTick = new Evt<TimerTick>();
+
+    #endregion
+    
     #region Walker Events
 
     public static Evt<Vector3> OnCheckpointReached = new Evt<Vector3>();
