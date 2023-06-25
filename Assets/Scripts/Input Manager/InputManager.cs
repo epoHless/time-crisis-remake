@@ -25,12 +25,20 @@ public static class InputManager
         _isInit = true;
     }
 
-    public static void ToggleShooting(bool _value)
+    public static void ToggleShoot(bool _value)
     {
         if (_value)
             Player.Shoot.Enable();
         else 
             Player.Shoot.Disable();
+    }
+    
+    public static void ToggleReload(bool _value)
+    {
+        if (_value)
+            Player.Reload.Enable();
+        else 
+            Player.Reload.Disable();
     }
     
     public static void ToggleCover(bool _value)

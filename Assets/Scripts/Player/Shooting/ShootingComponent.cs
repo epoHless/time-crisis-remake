@@ -23,6 +23,7 @@ public class ShootingComponent : MonoBehaviour
     private void OnEnable()
     {
         InputManager.Player.Shoot.performed += Shoot;
+        InputManager.Player.Reload.performed += Reload;
         
         EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
         EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
@@ -31,6 +32,7 @@ public class ShootingComponent : MonoBehaviour
     private void OnDisable()
     {
         InputManager.Player.Shoot.performed -= Shoot;
+        InputManager.Player.Reload.performed -= Reload;
         
         EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
         EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
@@ -47,12 +49,14 @@ public class ShootingComponent : MonoBehaviour
 
     private void OnCheckpointCleared()
     {
-        InputManager.ToggleShooting(false);
+        InputManager.ToggleShoot(false);
+        InputManager.ToggleReload(false);
     }
     
     private void OnCheckpointStart()
     {
-        InputManager.ToggleShooting(true);
+        InputManager.ToggleShoot(true);
+        InputManager.ToggleReload(true);
     }
     
     private void Shoot(InputAction.CallbackContext obj)
@@ -75,13 +79,13 @@ public class ShootingComponent : MonoBehaviour
 
         if (currentAmmo == 0)
         {
-            Reload();
+            Reload(obj);
         }
     }
 
-    private void Reload()
+    private void Reload(InputAction.CallbackContext obj)
     {
-        InputManager.ToggleShooting(false);
+        InputManager.ToggleShoot(false);
 
         currentAmmo = capacity;
         
@@ -89,7 +93,7 @@ public class ShootingComponent : MonoBehaviour
 
         sequence.onComplete += () =>
         {
-            InputManager.ToggleShooting(true);
+            InputManager.ToggleShoot(true);
             EventManager.OnReload?.Invoke();
         };
     }
