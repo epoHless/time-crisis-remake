@@ -7,6 +7,8 @@ public class TimerUI : MonoBehaviour
     #region Fields
 
     [SerializeField] private TMP_Text countdownTime;
+    [SerializeField] private TMP_Text additionalTime;
+    
     [SerializeField] private TMP_Text playerTime;
 
     #endregion
@@ -45,6 +47,12 @@ public class TimerUI : MonoBehaviour
     
     private void OnCheckpointCleared()
     {
+        additionalTime.DOFade(1, .75f)
+            .SetLoops(2, LoopType.Yoyo);
+        additionalTime.rectTransform.DOAnchorPosX(120f, .75f)
+            .SetLoops(2, LoopType.Yoyo)
+            .SetEase(Ease.OutBack);
+        
         countdownTime.DOFontSize(60f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
 

@@ -38,6 +38,12 @@ public class Checkpoint
         currentWave = waves[0];
         waves.Remove(currentWave);
         
+        if(currentWave.entities.Count == 0)
+        {
+            EventManager.OnCheckpointCleared?.Invoke();
+            return;
+        }
+
         foreach (var entity in currentWave.entities)
         {
             entity.Enable();

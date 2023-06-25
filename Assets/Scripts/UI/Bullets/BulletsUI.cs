@@ -6,6 +6,9 @@ public class BulletsUI : MonoBehaviour
 {
     #region Fields
 
+    [SerializeField] private Ease ease;
+    [SerializeField] private RectTransform reloadImage;
+    
     [SerializeField] private List<RectTransform> bullets = new List<RectTransform>();
     private List<GameObject> bulletObjects = new List<GameObject>();
 
@@ -40,6 +43,12 @@ public class BulletsUI : MonoBehaviour
 
     private void OnReload()
     {
+        if (!DOTween.IsTweening(reloadImage))
+        {
+            reloadImage.DORotate(Vector3.forward * -45, .15f).SetLoops(2, LoopType.Yoyo).SetEase(ease).SetRelative();
+            reloadImage.transform.DOScale(Vector3.one * 0.8f, .15f).SetLoops(2, LoopType.Yoyo);
+        }
+
         for (int i = 0; i < bullets.Count; i++)
         {
             bulletObjects[i].transform.localPosition = Vector3.zero;

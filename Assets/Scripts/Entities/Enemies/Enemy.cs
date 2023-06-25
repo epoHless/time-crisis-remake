@@ -39,7 +39,7 @@ namespace Entities
 
         protected override void Initialise()
         {
-            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.InOutBack).onComplete += () =>
+            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).onComplete += () =>
             {
                 Debug.Log($"{gameObject.name} is init!");
                 
@@ -53,13 +53,8 @@ namespace Entities
         public override void OnDeath()
         {
             base.OnDeath();
-            
-            Sequence ??= DOTween.Sequence()
-                .Append(transform.DOScale(Vector3.zero, .2f).SetEase(Ease.InOutBounce))
-                .Append(transform.DOShakePosition(.2f, 0.1f, 3))
-                .Append(transform.DOShakeScale(.2f));
 
-            Sequence.onComplete += () =>
+            transform.DOScale(Vector3.zero, .5f).SetEase(Ease.OutBack).onComplete += () =>
             {
                 gameObject.SetActive(false);
             };
