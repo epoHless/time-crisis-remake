@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 [DisallowMultipleComponent]
 public class CoverComponent : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private GameObject camera;
     [SerializeField] private CapsuleCollider collider;
+
+    #endregion
+
+    #region Unity Events
 
     private void OnEnable()
     {
@@ -26,6 +32,10 @@ public class CoverComponent : MonoBehaviour
         EventManager.OnCheckpointStart.RemoveListener(EnableCover);
     }
 
+    #endregion
+
+    #region Event Methods
+
     private void Uncover(InputAction.CallbackContext obj)
     {
         InputManager.ToggleShoot(true);
@@ -38,7 +48,7 @@ public class CoverComponent : MonoBehaviour
     {
         InputManager.ToggleShoot(false);
         
-        camera.transform.DOMoveY(0, 0.25f);
+        camera.transform.DOMoveY(-0.2f, 0.25f);
         collider.enabled = false;
     }
     
@@ -51,4 +61,6 @@ public class CoverComponent : MonoBehaviour
     {
         InputManager.ToggleCover(true);
     }
+
+    #endregion
 }

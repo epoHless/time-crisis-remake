@@ -2,8 +2,12 @@
 
 public class BulletParticle : MonoBehaviour
 {
+    #region Fields
+
     private ParticleSystem particles;
     private ParticleSystem.MainModule emittersModule;
+
+    #endregion
     
     #region Unity Methods
 

@@ -3,10 +3,16 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private float startingTime;
 
     private TimerTick countdownTimer;
     private TimerTick playerTimer;
+
+    #endregion
+
+    #region Methods
 
     private void Awake()
     {
@@ -24,11 +30,6 @@ public class TimeManager : MonoBehaviour
         EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
     }
 
-    private void OnCheckpointCleared()
-    {
-        countdownTimer.Add(15);
-    }
-
     private void Update()
     {
         countdownTimer.Tick(-Time.deltaTime);
@@ -37,4 +38,15 @@ public class TimeManager : MonoBehaviour
         EventManager.OnCountdownTick?.Invoke(countdownTimer);
         EventManager.OnTimeTick?.Invoke(playerTimer);
     }
+
+    #endregion
+
+    #region Event Methods
+
+    private void OnCheckpointCleared()
+    {
+        countdownTimer.Add(15);
+    }
+
+    #endregion
 }

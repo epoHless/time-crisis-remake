@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class TimerUI : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private TMP_Text countdownTime;
     [SerializeField] private TMP_Text playerTime;
+
+    #endregion
+
+    #region Unity Methods
 
     private void OnEnable()
     {
@@ -23,6 +29,10 @@ public class TimerUI : MonoBehaviour
         EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
     }
 
+    #endregion
+
+    #region Event Methods
+
     private void OnTimeTick(TimerTick _time)
     {
         playerTime.text = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
@@ -37,4 +47,6 @@ public class TimerUI : MonoBehaviour
     {
         countdownTime.DOFontSize(60f, 0.1f).SetLoops(2, LoopType.Yoyo);
     }
+
+    #endregion
 }

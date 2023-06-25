@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class BulletsUI : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private List<RectTransform> bullets = new List<RectTransform>();
     private List<GameObject> bulletObjects = new List<GameObject>();
+
+    #endregion
+
+    #region Unity Methods
 
     private void Awake()
     {
@@ -27,6 +33,10 @@ public class BulletsUI : MonoBehaviour
         EventManager.OnBulletFired.RemoveListener(OnBulletFired);
         EventManager.OnReload.RemoveListener(OnReload);
     }
+
+    #endregion
+
+    #region Event Methods
 
     private void OnReload()
     {
@@ -53,4 +63,6 @@ public class BulletsUI : MonoBehaviour
             };
         };
     }
+
+    #endregion
 }

@@ -2,16 +2,29 @@
 
 public class TimerTick
 {
+    #region Constructor
+
     public TimerTick(float _seconds)
     {
         seconds = _seconds;
     }
 
+    #endregion
+
+    #region Fields
+
     private float seconds;
+    private float minutes;
+    
+
+    #endregion
+    #region Properties
+
     public float Seconds => seconds;
 
-    private float minutes;
-    public float Minutes => minutes;
+    #endregion
+
+    #region Methods
 
     public void Add(float _value)
     {
@@ -22,4 +35,6 @@ public class TimerTick
     {
         seconds += _time;
     }
+
+    #endregion
 }
