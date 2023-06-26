@@ -54,7 +54,7 @@ public class TimeManager : MonoBehaviour
         countdownTimer.Add(_time);
     }
     
-    private void SendFinalTime()
+    private void SendFinalTime(string _value)
     {
         EventManager.OnFinalTimeRequested?.Invoke(playerTimer);
         tick = false;

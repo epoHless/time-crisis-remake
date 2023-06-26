@@ -5,7 +5,7 @@ public static class EventManager
 {
     #region Game Events
 
-    public static Evt OnGameOver = new Evt();
+    public static Evt<string> OnGameOver = new Evt<string>();
 
     #endregion
     

@@ -24,7 +24,7 @@ public static class InputManager
         _inputActions.Enable();
         _isInit = true;
         
-        EventManager.OnGameOver.AddListener(() =>
+        EventManager.OnGameOver.AddListener(s =>
         {
             ToggleShoot(false);
             ToggleCover(false);

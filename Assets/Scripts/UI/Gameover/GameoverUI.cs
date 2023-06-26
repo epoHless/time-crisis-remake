@@ -9,6 +9,7 @@ public class GameoverUI : MonoBehaviour
     [SerializeField] private TMP_Text accuracy;
     [SerializeField] private TMP_Text shots;
     [SerializeField] private TMP_Text time;
+    [SerializeField] private TMP_Text info;
 
     private CanvasGroup canvasGroup;
     
@@ -53,8 +54,9 @@ public class GameoverUI : MonoBehaviour
         accuracy.text = $"{acc.ToString("00.0")} %";
     }
     
-    private void OnGameOver()
+    private void OnGameOver(string _value)
     {
+        info.text = $"area {_value}";
         DOTween.Sequence().AppendInterval(1f).Append(canvasGroup.DOFade(1, .25f));
     }
     

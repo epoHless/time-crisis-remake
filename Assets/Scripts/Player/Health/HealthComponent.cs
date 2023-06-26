@@ -17,6 +17,6 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     public void OnDeath()
     {
-        EventManager.OnGameOver?.Invoke();
+        EventManager.OnGameOver?.Invoke("failed");
     }
 }

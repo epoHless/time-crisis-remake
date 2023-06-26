@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -20,6 +21,16 @@ namespace Entities
 
         #region Unity Methods
 
+        private void OnEnable()
+        {
+            EventManager.OnGameOver.AddListener(Deactivate);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.OnGameOver.AddListener(Deactivate);
+        }
+
         protected virtual void Start()
         {
             transform.localScale = Vector3.zero;
@@ -35,17 +46,33 @@ namespace Entities
 
         #endregion
 
+        #region Event Methods
+
+        private void Deactivate(string obj)
+        {
+            ToggleBehaviours(false);
+        }
+
+        #endregion
+        
         #region Methods
 
         protected override void Initialise()
         {
-            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).onComplete += () =>
+            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).onComplete += () => { ToggleBehaviours(true); };
+
+            var position = Utilities.PlayerTransform.position;
+            position.y = transform.position.y;
+            
+            transform.LookAt(position);
+        }
+
+        private void ToggleBehaviours(bool _value)
+        {
+            foreach (var behaviour in behaviours)
             {
-                foreach (var behaviour in behaviours)
-                {
-                    behaviour.IsEnabled = true;
-                }
-            };
+                behaviour.IsEnabled = _value;
+            }
         }
 
         public override void OnDeath()
