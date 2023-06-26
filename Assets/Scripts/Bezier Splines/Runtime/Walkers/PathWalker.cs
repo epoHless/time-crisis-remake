@@ -8,6 +8,7 @@ public class PathWalker : MonoBehaviour
     public PathCreator Creator;
     public float tollerance = 0.15f;
 
+    protected Vector3 position;
     public bool lookForward;
     
     public float duration;
@@ -56,6 +57,11 @@ public class PathWalker : MonoBehaviour
                 goingForward = true;
             }
         }
+        
+        position = Creator.path.GetPoint(progress);
+        transform.localPosition = position;
+        
+        if (lookForward) transform.LookAt(position + Creator.path.GetDirection(progress));
     }
 
     #endregion

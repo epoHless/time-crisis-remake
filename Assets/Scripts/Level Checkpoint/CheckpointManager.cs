@@ -76,7 +76,9 @@ public class CheckpointManager : MonoBehaviour
         currentCheckpoint.RemoveEntity(_enemy);
             
         if (currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
+        {
             currentCheckpoint.Initialise();
+        }
         else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
         {
             if(checkpoints.Count > 0)

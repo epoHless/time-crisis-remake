@@ -5,4 +5,5 @@ using Entities;
 public class Wave
 {
     public List<Entity> entities;
+    public float cameraRotation;
 }

@@ -18,11 +18,6 @@ public class PlayerPathWalker : PathWalker
     protected override void Update()
     {
         base.Update();
-        
-        Vector3 position = Creator.path.GetPoint(progress);
-        transform.localPosition = position;
-        
-        if (lookForward) transform.LookAt(position + Creator.path.GetDirection(progress));
 
         if (Vector3.Distance(transform.localPosition, position) <= tollerance)
         {

@@ -29,6 +29,8 @@ public static class EventManager
 
     public static Evt OnCheckpointStart = new Evt();
     public static Evt OnCheckpointCleared = new Evt();
+    
+    public static Evt<float> OnCameraRotationRequested = new Evt<float>();
 
     public static Evt<Entities.Entity> OnEnemyKilled = new Evt<Entities.Entity>();
 

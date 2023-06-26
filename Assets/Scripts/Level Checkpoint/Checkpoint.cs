@@ -48,6 +48,8 @@ public class Checkpoint
         {
             entity.Enable();
         }
+        
+        EventManager.OnCameraRotationRequested?.Invoke(currentWave.cameraRotation);
     }
 
     public bool Contains(Entity _entity)
