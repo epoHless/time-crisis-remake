@@ -23,11 +23,13 @@ public class TimeManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.OnTimeAdded.AddListener(OnTimeAdded);
+        EventManager.OnGameOver.AddListener(SendFinalTime);
     }
 
     private void OnDisable()
     {
-        EventManager.OnTimeAdded.AddListener(OnTimeAdded);
+        EventManager.OnTimeAdded.RemoveListener(OnTimeAdded);
+        EventManager.OnGameOver.RemoveListener(SendFinalTime);
     }
 
     private void Update()
@@ -46,6 +48,11 @@ public class TimeManager : MonoBehaviour
     private void OnTimeAdded(float _time)
     {
         countdownTimer.Add(_time);
+    }
+    
+    private void SendFinalTime()
+    {
+        EventManager.OnFinalTimeRequested?.Invoke(playerTimer);
     }
 
     #endregion

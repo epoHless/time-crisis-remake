@@ -10,6 +10,9 @@ public class CoverComponent : MonoBehaviour
     [SerializeField] private GameObject camera;
     [SerializeField] private CapsuleCollider collider;
 
+    private Vector3 peekDirection;
+    private Vector3 position;
+    
     #endregion
 
     #region Unity Events
@@ -21,6 +24,8 @@ public class CoverComponent : MonoBehaviour
         
         EventManager.OnCheckpointCleared.AddListener(DisableCover);
         EventManager.OnCheckpointStart.AddListener(EnableCover);
+        
+        EventManager.OnPeekChanged.AddListener(ChangePeek);
     }
 
     private void OnDisable()
@@ -30,6 +35,8 @@ public class CoverComponent : MonoBehaviour
         
         EventManager.OnCheckpointCleared.RemoveListener(DisableCover);
         EventManager.OnCheckpointStart.RemoveListener(EnableCover);
+        
+        EventManager.OnPeekChanged.RemoveListener(ChangePeek);
     }
 
     #endregion
@@ -40,7 +47,7 @@ public class CoverComponent : MonoBehaviour
     {
         InputManager.ToggleShoot(true);
 
-        camera.transform.DOMoveY(1, 0.25f);
+        camera.transform.DOLocalMove(position, 0.25f); 
         collider.enabled = true;
     }
 
@@ -48,7 +55,7 @@ public class CoverComponent : MonoBehaviour
     {
         InputManager.ToggleShoot(false);
         
-        camera.transform.DOMoveY(-0.2f, 0.25f);
+        camera.transform.DOLocalMove(peekDirection, 0.25f);
         collider.enabled = false;
     }
     
@@ -60,6 +67,12 @@ public class CoverComponent : MonoBehaviour
     private void EnableCover()
     {
         InputManager.ToggleCover(true);
+    }
+    
+    private void ChangePeek(Vector3 _direction)
+    {
+        peekDirection = _direction;
+        position = transform.localPosition;
     }
 
     #endregion

@@ -13,15 +13,17 @@ public static class EventManager
 
     public static Evt<float> OnTimeAdded = new Evt<float>();
     public static Evt<float, Vector3> OnTimeGiverRequested = new Evt<float, Vector3>();
-    
+
     public static Evt<TimerTick> OnCountdownTick = new Evt<TimerTick>();
     public static Evt<TimerTick> OnTimeTick = new Evt<TimerTick>();
+    public static Evt<TimerTick> OnFinalTimeRequested = new Evt<TimerTick>();
 
     #endregion
     
     #region Walker Events
 
     public static Evt<Vector3> OnCheckpointReached = new Evt<Vector3>();
+    public static Evt<Vector3> OnPeekChanged = new Evt<Vector3>();
 
     #endregion
 

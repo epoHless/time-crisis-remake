@@ -19,7 +19,9 @@ public class Checkpoint
     #region Fields
 
     [SerializeField] private List<Wave> waves;
-    [SerializeField] private Wave currentWave;
+    
+    private Vector3 peekDirection;
+    private Wave currentWave;
 
     [HideInInspector] public Vector3 point;
 
@@ -28,6 +30,7 @@ public class Checkpoint
     #region Properties
 
     [field: SerializeField] public bool TriggerArea { get; private set; }
+    [field: SerializeField] public Vector3 PeekDirection { get; private set; }
 
     #endregion
 

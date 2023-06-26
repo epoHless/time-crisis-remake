@@ -62,7 +62,9 @@ public class CheckpointManager : MonoBehaviour
             if (checkpoint.TriggerArea)
             {
                 currentCheckpoint.Initialise();
+                
                 EventManager.OnCheckpointStart?.Invoke();
+                EventManager.OnPeekChanged?.Invoke(currentCheckpoint.PeekDirection);
             }
 
             checkpoints.Remove(checkpoint);
