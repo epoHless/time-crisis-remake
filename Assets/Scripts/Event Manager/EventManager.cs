@@ -11,7 +11,8 @@ public static class EventManager
     
     #region Timer Events
 
-    public static Evt OnTimeAdded = new Evt();
+    public static Evt<float> OnTimeAdded = new Evt<float>();
+    public static Evt<float, Vector3> OnTimeGiverRequested = new Evt<float, Vector3>();
     
     public static Evt<TimerTick> OnCountdownTick = new Evt<TimerTick>();
     public static Evt<TimerTick> OnTimeTick = new Evt<TimerTick>();

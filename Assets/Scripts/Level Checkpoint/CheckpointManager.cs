@@ -80,7 +80,10 @@ public class CheckpointManager : MonoBehaviour
         else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
         {
             if(checkpoints.Count > 0)
+            {
                 EventManager.OnCheckpointCleared?.Invoke();
+                EventManager.OnTimeAdded?.Invoke(15);
+            }
             else 
                 EventManager.OnGameOver?.Invoke();
         }

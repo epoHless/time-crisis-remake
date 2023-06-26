@@ -20,7 +20,7 @@ public class TimerUI : MonoBehaviour
         EventManager.OnCountdownTick.AddListener(OnCountdownTick);
         EventManager.OnTimeTick.AddListener(OnTimeTick);
         
-        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
+        EventManager.OnTimeAdded.AddListener(OnCheckpointCleared);
     }
     
     private void OnDisable()
@@ -28,7 +28,7 @@ public class TimerUI : MonoBehaviour
         EventManager.OnCountdownTick.RemoveListener(OnCountdownTick);
         EventManager.OnTimeTick.RemoveListener(OnTimeTick);
         
-        EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
+        EventManager.OnTimeAdded.RemoveListener(OnCheckpointCleared);
     }
 
     #endregion
@@ -45,10 +45,18 @@ public class TimerUI : MonoBehaviour
         countdownTime.text = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
     }
     
-    private void OnCheckpointCleared()
+    private void OnCheckpointCleared(float _time)
     {
+        additionalTime.text = $"+{_time} sec";
+
+        if (DOTween.IsTweening(additionalTime))
+        {
+            DOTween.Kill(additionalTime, true);
+        }
+        
         additionalTime.DOFade(1, .75f)
             .SetLoops(2, LoopType.Yoyo);
+        
         additionalTime.rectTransform.DOAnchorPosX(120f, .75f)
             .SetLoops(2, LoopType.Yoyo)
             .SetEase(Ease.OutBack);

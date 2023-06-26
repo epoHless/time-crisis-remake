@@ -22,12 +22,12 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
+        EventManager.OnTimeAdded.AddListener(OnTimeAdded);
     }
 
     private void OnDisable()
     {
-        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
+        EventManager.OnTimeAdded.AddListener(OnTimeAdded);
     }
 
     private void Update()
@@ -43,9 +43,9 @@ public class TimeManager : MonoBehaviour
 
     #region Event Methods
 
-    private void OnCheckpointCleared()
+    private void OnTimeAdded(float _time)
     {
-        countdownTimer.Add(15);
+        countdownTimer.Add(_time);
     }
 
     #endregion
