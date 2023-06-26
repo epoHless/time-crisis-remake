@@ -57,7 +57,6 @@ namespace Entities
 
         public virtual void OnDeath()
         {
-            Debug.Log($"{gameObject.name} died");
             EventManager.OnEnemyKilled?.Invoke(this);
         }
 

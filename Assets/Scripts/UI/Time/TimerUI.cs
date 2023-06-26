@@ -8,9 +8,11 @@ public class TimerUI : MonoBehaviour
 
     [SerializeField] private TMP_Text countdownTime;
     [SerializeField] private TMP_Text additionalTime;
-    
     [SerializeField] private TMP_Text playerTime;
 
+    private string countdownText;
+    private string playerText;
+    
     #endregion
 
     #region Unity Methods
@@ -37,12 +39,14 @@ public class TimerUI : MonoBehaviour
 
     private void OnTimeTick(TimerTick _time)
     {
-        playerTime.text = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        playerText = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        playerTime.text = playerText;
     }
 
     private void OnCountdownTick(TimerTick _time)
     {
-        countdownTime.text = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        countdownText = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        countdownTime.text = countdownText;
     }
     
     private void OnCheckpointCleared(float _time)

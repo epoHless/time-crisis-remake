@@ -41,8 +41,6 @@ namespace Entities
         {
             transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).onComplete += () =>
             {
-                Debug.Log($"{gameObject.name} is init!");
-                
                 foreach (var behaviour in behaviours)
                 {
                     behaviour.IsEnabled = true;

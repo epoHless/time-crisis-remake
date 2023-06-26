@@ -25,6 +25,8 @@ public class GameoverUI : MonoBehaviour
         EventManager.OnFinalTimeRequested.AddListener(UpdateData);
         EventManager.OnBulletFired.AddListener(CountFired);
         EventManager.OnBulletHit.AddListener(CountHit);
+        
+        EventManager.OnGameOver.AddListener(OnGameOver);
     }
 
     private void OnDisable()
@@ -32,6 +34,8 @@ public class GameoverUI : MonoBehaviour
         EventManager.OnFinalTimeRequested.RemoveListener(UpdateData);
         EventManager.OnBulletFired.RemoveListener(CountFired);
         EventManager.OnBulletHit.RemoveListener(CountHit);
+        
+        EventManager.OnGameOver.RemoveListener(OnGameOver);
     }
 
     private void Start()
@@ -42,10 +46,16 @@ public class GameoverUI : MonoBehaviour
     private void UpdateData(TimerTick _time)
     {
         time.text = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        
         shots.text = $"{shotsHit}/{shotsFired}";
-        accuracy.text = $"{(shotsHit/shotsFired) * 100} %";
-
-        canvasGroup.DOFade(1, .25f);
+        
+        var acc = ((float)shotsHit)/shotsFired * 100;
+        accuracy.text = $"{acc.ToString("00.0")} %";
+    }
+    
+    private void OnGameOver()
+    {
+        DOTween.Sequence().AppendInterval(1f).Append(canvasGroup.DOFade(1, .25f));
     }
     
     private void CountFired(int _value)

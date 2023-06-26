@@ -68,6 +68,7 @@ public class CheckpointManager : MonoBehaviour
             }
 
             checkpoints.Remove(checkpoint);
+            Debug.Log($"Removed checkpoint at position {checkpoint.point}");
         }
     }
     
@@ -83,7 +84,7 @@ public class CheckpointManager : MonoBehaviour
         }
         else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
         {
-            if(checkpoints.Count > 0)
+            if(checkpoints.Count > 1)
             {
                 EventManager.OnCheckpointCleared?.Invoke();
                 EventManager.OnTimeAdded?.Invoke(15);

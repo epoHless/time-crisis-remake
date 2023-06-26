@@ -1,0 +1,499 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CPM_Level1
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: c467cbaf575946b58155d5ca15887b44, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: creator
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.size
+    value: 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].waves.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].point.x
+    value: 8.587585
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].point.z
+    value: -0.552124
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].<TriggerArea>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[0].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].waves.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].waves.Array.data[0].entities.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].waves.Array.data[0].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].waves.Array.data[0].entities.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].waves.Array.data[0].entities.Array.data[2]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].waves.Array.data[0].cameraRotation
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].point.x
+    value: 0.12036133
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].point.z
+    value: 0.71325684
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].<TriggerArea>k__BackingField
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].<PeekDirection>k__BackingField.y
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[1].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[0].entities.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[0].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[0].cameraRotation
+    value: -7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[1].entities.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[1].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[1].entities.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[1].entities.Array.data[2]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[1].entities.Array.data[3]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].waves.Array.data[1].cameraRotation
+    value: 50
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].point.x
+    value: -10.833555
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].point.z
+    value: 19.504068
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].<TriggerArea>k__BackingField
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].<PeekDirection>k__BackingField.y
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[2].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].waves.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].point.x
+    value: -7.001376
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].point.z
+    value: 19.45913
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].<TriggerArea>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[3].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.size
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[0].entities.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[0].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[0].entities.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[0].cameraRotation
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[1].entities.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[1].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[1].entities.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[1].cameraRotation
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[2].entities.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[2].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[2].entities.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[2].cameraRotation
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[3].entities.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[3].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[3].entities.Array.data[1]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].waves.Array.data[3].cameraRotation
+    value: 50
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].point.x
+    value: -8.9204645
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].point.z
+    value: 43.7161
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].<TriggerArea>k__BackingField
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].<PeekDirection>k__BackingField.y
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[4].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].waves.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].point.x
+    value: -4.7382283
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].point.z
+    value: 47.629223
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].<TriggerArea>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[5].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].waves.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].waves.Array.data[0].entities.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].waves.Array.data[0].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].waves.Array.data[0].cameraRotation
+    value: 9.315
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].point.x
+    value: -4.563836
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].point.z
+    value: 59.868
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].<TriggerArea>k__BackingField
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].<PeekDirection>k__BackingField.x
+    value: -1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[6].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].waves.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].point.x
+    value: -2.3581808
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].point.z
+    value: 63.538216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].<TriggerArea>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[7].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].waves.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].waves.Array.data[0].entities.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].waves.Array.data[0].entities.Array.data[0]
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].waves.Array.data[0].cameraRotation
+    value: -25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].point.x
+    value: 4.045266
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].point.z
+    value: 72.28637
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].<TriggerArea>k__BackingField
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].<PeekDirection>k__BackingField.x
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: checkpoints.Array.data[8].<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.waves.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.point.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.point.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.point.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.<TriggerArea>k__BackingField
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.<PeekDirection>k__BackingField.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.<PeekDirection>k__BackingField.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: currentCheckpoint.<PeekDirection>k__BackingField.z
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

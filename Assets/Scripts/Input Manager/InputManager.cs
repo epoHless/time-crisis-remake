@@ -23,6 +23,13 @@ public static class InputManager
         _inputActions ??= new PlayerInputActions();
         _inputActions.Enable();
         _isInit = true;
+        
+        EventManager.OnGameOver.AddListener(() =>
+        {
+            ToggleShoot(false);
+            ToggleCover(false);
+            ToggleReload(false);
+        });
     }
 
     public static void ToggleShoot(bool _value)

@@ -10,6 +10,8 @@ public class TimeManager : MonoBehaviour
     private TimerTick countdownTimer;
     private TimerTick playerTimer;
 
+    private bool tick = true;
+    
     #endregion
 
     #region Methods
@@ -34,6 +36,8 @@ public class TimeManager : MonoBehaviour
 
     private void Update()
     {
+        if (!tick) return;
+        
         countdownTimer.Tick(-Time.deltaTime);
         playerTimer.Tick(Time.deltaTime);
         
@@ -53,6 +57,7 @@ public class TimeManager : MonoBehaviour
     private void SendFinalTime()
     {
         EventManager.OnFinalTimeRequested?.Invoke(playerTimer);
+        tick = false;
     }
 
     #endregion
