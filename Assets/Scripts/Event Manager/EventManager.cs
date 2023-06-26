@@ -1,8 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using PlayFab.ClientModels;
 using UnityEngine;
 
 public static class EventManager
 {
+    #region Playfab Events
+
+    public static Evt<string> OnLoginSuccess = new Evt<string>();
+    public static Evt<string> OnLoginError = new Evt<string>();
+    
+    public static Evt<string> OnLeaderboardUpdated = new Evt<string>();
+    public static Evt<List<PlayerLeaderboardEntry>> OnLeaderboardGet = new Evt<List<PlayerLeaderboardEntry>>();
+
+    #endregion
+    
     #region Game Events
 
     public static Evt<string> OnGameOver = new Evt<string>();
