@@ -49,5 +49,11 @@ public static class EventManager
 
     #endregion
 
+    #region Health Events
+
+    public static Evt<int> OnDamageTaken = new Evt<int>();
+
+    #endregion
+
     #endregion
 }

@@ -68,7 +68,6 @@ public class CheckpointManager : MonoBehaviour
             }
 
             checkpoints.Remove(checkpoint);
-            Debug.Log($"Removed checkpoint at position {checkpoint.point}");
         }
     }
     

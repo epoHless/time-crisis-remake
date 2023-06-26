@@ -39,7 +39,7 @@ namespace Entities
         public void Enable() => IsActive = true;
         public void Disable() => IsActive = false;
 
-        protected virtual void Initialise() { Debug.Log($"{gameObject.name} is init!"); }
+        protected virtual void Initialise() {}
 
         #endregion
 
