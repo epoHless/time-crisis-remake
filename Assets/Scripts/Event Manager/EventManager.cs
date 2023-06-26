@@ -55,5 +55,11 @@ public static class EventManager
 
     #endregion
 
+    #region Enemies Events
+
+    public static Evt<Transform> OnBulletRequested = new Evt<Transform>();
+
+    #endregion
+
     #endregion
 }

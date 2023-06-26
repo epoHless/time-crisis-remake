@@ -22,13 +22,21 @@ namespace Entities
             if (GUILayout.Button("Add Behaviour"))
             {
                 EBehaviour behaviourType = (EBehaviour)behaviour;
-                var newBehaviour = (behaviourType) switch
-                {
-                    EBehaviour.MOVEMENT => new Movement(),
-                    EBehaviour.SHOOTING => new Movement(), //todo Switch to shooting class
-                    _ => throw new ArgumentOutOfRangeException()
-                };
+
+                Behaviour newBehaviour;
                 
+                switch ((behaviourType))
+                {
+                    case EBehaviour.MOVEMENT:
+                        newBehaviour = new Movement();
+                        break;
+                    case EBehaviour.SHOOTING:
+                        newBehaviour = new Shooting();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
                 script.Behaviours.Add(newBehaviour);
             }
             
