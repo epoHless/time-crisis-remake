@@ -12,7 +12,6 @@ public class OpenMenuButton : MenuButton
         fade.DOFade(1, 0.15f).onComplete += () =>
         {
             EventManager.OnMenuRequested?.Invoke();
-            
             DOTween.Sequence().AppendInterval(1f).onComplete += ReloadGameplay;
         };
     }
@@ -21,6 +20,8 @@ public class OpenMenuButton : MenuButton
     {
         SceneManager.UnloadSceneAsync(1).completed += operation =>
         {
+            PlayfabManager.GetLeaderboard();
+            
             SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += asyncOperation =>
             {
                 fade.DOFade(0, .15f);
