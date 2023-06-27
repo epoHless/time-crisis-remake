@@ -18,7 +18,6 @@ public class LeaderboardManager : ObjectPooler<LeaderboardManager>
         
         EventManager.OnLoginSuccess.AddListener(OnLogin);
         EventManager.OnLeaderboardGet.AddListener(Init);
-        
         EventManager.OnLeaderboardUpdated.AddListener(UpdateLeaderboard);
     }
 
@@ -26,7 +25,6 @@ public class LeaderboardManager : ObjectPooler<LeaderboardManager>
     {
         EventManager.OnLeaderboardGet.RemoveListener(Init);
         EventManager.OnLoginSuccess.RemoveListener(OnLogin);
-        
         EventManager.OnLeaderboardUpdated.RemoveListener(UpdateLeaderboard);
     }
     
