@@ -10,6 +10,8 @@ public static class EventManager
     public static Evt<string> OnLoginSuccess = new Evt<string>();
     public static Evt<string> OnLoginError = new Evt<string>();
     
+    public static Evt<string> OnUsernameSet = new Evt<string>();
+    
     public static Evt<string> OnLeaderboardUpdated = new Evt<string>();
     public static Evt<List<PlayerLeaderboardEntry>> OnLeaderboardGet = new Evt<List<PlayerLeaderboardEntry>>();
 

@@ -5,17 +5,17 @@ using UnityEngine;
 
 public static class PlayfabManager
 {
-    public static void Login(string _value)
+    public static void Login()
     {
         var request = new LoginWithCustomIDRequest
         {
-            CustomId = _value,
-            CreateAccount = true
+            CustomId = SystemInfo.deviceUniqueIdentifier,
+            CreateAccount = true,
         };
         
         PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
     }
-
+    
     private static void OnError(PlayFabError obj)
     {
         EventManager.OnLoginError.Invoke($"{obj.ErrorMessage}");
@@ -23,7 +23,24 @@ public static class PlayfabManager
 
     private static void OnSuccess(LoginResult obj)
     {
+        Debug.Log($"Logged in!");
         EventManager.OnLoginSuccess.Invoke($"{obj.PlayFabId}");
+    }
+
+    public static void SetUsername(string _name)
+    {
+        var request = new UpdateUserTitleDisplayNameRequest
+        {
+            DisplayName = _name
+        };
+        
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnUsernameSuccess, OnError);
+
+    }
+
+    private static void OnUsernameSuccess(UpdateUserTitleDisplayNameResult obj)
+    {
+        EventManager.OnUsernameSet?.Invoke(obj.DisplayName);
     }
 
     public static void SendLeaderboard(int _time)
@@ -47,9 +64,9 @@ public static class PlayfabManager
     {
         var request = new GetLeaderboardRequest
         {
-            StatisticName = "Time Score",
+            StatisticName = "Time",
             StartPosition = 0,
-            MaxResultsCount = 200
+            MaxResultsCount = 50
         };
         
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnError);

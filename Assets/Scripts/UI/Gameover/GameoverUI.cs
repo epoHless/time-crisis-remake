@@ -58,6 +58,9 @@ public class GameoverUI : MonoBehaviour
     {
         info.text = $"area {_value}";
         DOTween.Sequence().AppendInterval(1f).Append(canvasGroup.DOFade(1, .25f));
+
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
     }
     
     private void CountFired(int _value)
