@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using MobileFramework.ObjectPooler;
 using PlayFab.ClientModels;
@@ -35,6 +36,8 @@ public class LeaderboardManager : ObjectPooler<LeaderboardManager>
 
     private void Init(List<PlayerLeaderboardEntry> _leaderboardEntries)
     {
+        _leaderboardEntries.Reverse();
+        
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
