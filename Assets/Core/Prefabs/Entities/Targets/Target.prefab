@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8308029424620359425}
   - component: {fileID: 8296852859168376397}
   - component: {fileID: 8288928040769852975}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SM_Prop_Target_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8308075641865465146}
   - component: {fileID: 8298608971525214838}
   - component: {fileID: 8290571651163274386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 8312630247225778781}
   - component: {fileID: 8312630247225778783}
   - component: {fileID: 976074564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

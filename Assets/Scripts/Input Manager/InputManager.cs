@@ -11,6 +11,8 @@ public static class InputManager
     public static PlayerInputActions.UIActions UI => _inputActions.UI;
 
     public static Vector2 MousePosition => Mouse.current.position.ReadValue();
+
+    private static bool enabled;
     
     static InputManager()
     {
@@ -30,15 +32,22 @@ public static class InputManager
             EventManager.OnGameStart.AddListener(() =>
             {
                 _inputActions.Enable();
+                enabled = true;
                 ToggleInputs(true);
             });
             
-            EventManager.OnGameOver.AddListener(s => { ToggleInputs(false); });
+            EventManager.OnGameOver.AddListener(s =>
+            {
+                ToggleInputs(false);
+                enabled = false;
+            });
         }
     }
 
     private static void ToggleInputs(bool _value)
     {
+        if (!enabled) return;
+        
         ToggleShoot(_value);
         ToggleCover(_value);
         ToggleReload(_value);
@@ -46,6 +55,8 @@ public static class InputManager
 
     public static void ToggleShoot(bool _value)
     {
+        if (!enabled) return;
+
         if (_value)
             Player.Shoot.Enable();
         else 
@@ -54,6 +65,8 @@ public static class InputManager
     
     public static void ToggleReload(bool _value)
     {
+        if (!enabled) return;
+
         if (_value)
             Player.Reload.Enable();
         else 
@@ -62,6 +75,8 @@ public static class InputManager
     
     public static void ToggleCover(bool _value)
     {
+        if (!enabled) return;
+
         if (_value)
             Player.Cover.Enable();
         else 

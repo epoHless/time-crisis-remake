@@ -27,6 +27,8 @@ public class ShootingComponent : MonoBehaviour
         
         EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
         EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
+        
+        EventManager.OnGameStart.AddListener(OnStart);
     }
 
     private void OnDisable()
@@ -36,6 +38,8 @@ public class ShootingComponent : MonoBehaviour
         
         EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
         EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
+        
+        EventManager.OnGameStart.RemoveListener(OnStart);
     }
 
     private void Start()
@@ -59,6 +63,11 @@ public class ShootingComponent : MonoBehaviour
         InputManager.ToggleReload(true);
     }
     
+    private void OnStart()
+    {
+        Reload();
+    }
+    
     private void Shoot(InputAction.CallbackContext obj)
     {
         currentAmmo--;
@@ -72,6 +81,7 @@ public class ShootingComponent : MonoBehaviour
             if (hit.transform.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(1);
+                EventManager.OnBulletHitEnemy?.Invoke();
             }
             
             EventManager.OnBulletHit?.Invoke(hit.point);
@@ -79,11 +89,16 @@ public class ShootingComponent : MonoBehaviour
 
         if (currentAmmo == 0)
         {
-            Reload(obj);
+            Reload();
         }
     }
 
     private void Reload(InputAction.CallbackContext obj)
+    {
+        Reload();
+    }
+    
+    private void Reload()
     {
         InputManager.ToggleShoot(false);
 

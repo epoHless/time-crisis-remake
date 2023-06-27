@@ -54,8 +54,6 @@ public class LeaderboardSendUI : MonoBehaviour
         finalTime = _timer.Seconds;
         finalTime = Math.Round(finalTime, 2);
         finalTime *= 1000;
-        
-        Debug.Log((int)finalTime);
     }
 
     private void SendData()

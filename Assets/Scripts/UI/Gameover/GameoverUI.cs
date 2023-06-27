@@ -28,7 +28,7 @@ public class GameoverUI : MonoBehaviour
     {
         EventManager.OnFinalTimeRequested.AddListener(UpdateData);
         EventManager.OnBulletFired.AddListener(CountFired);
-        EventManager.OnBulletHit.AddListener(CountHit);
+        EventManager.OnBulletHitEnemy.AddListener(CountHit);
         
         EventManager.OnGameOver.AddListener(OnGameOver);
         EventManager.OnMenuRequested.AddListener(FadeOut);
@@ -38,9 +38,10 @@ public class GameoverUI : MonoBehaviour
     {
         EventManager.OnFinalTimeRequested.RemoveListener(UpdateData);
         EventManager.OnBulletFired.RemoveListener(CountFired);
-        EventManager.OnBulletHit.RemoveListener(CountHit);
+        EventManager.OnBulletHitEnemy.RemoveListener(CountHit);
         
         EventManager.OnGameOver.RemoveListener(OnGameOver);
+        EventManager.OnMenuRequested.RemoveListener(FadeOut);
     }
 
     private void Start()
@@ -73,6 +74,9 @@ public class GameoverUI : MonoBehaviour
     
     private void FadeOut()
     {
+        shotsFired = 0;
+        shotsHit = 0;
+        
         canvasGroup.DOFade(0, .25f);
         ToggleCanvasGroup(false);
     }
@@ -88,7 +92,7 @@ public class GameoverUI : MonoBehaviour
         shotsFired++;
     }
     
-    private void CountHit(Vector3 obj)
+    private void CountHit()
     {
         shotsHit++;
     }

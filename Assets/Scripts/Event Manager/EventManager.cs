@@ -67,6 +67,7 @@ public static class EventManager
     public static Evt OnReload = new Evt();
     
     public static Evt<Vector3> OnBulletHit = new Evt<Vector3>();
+    public static Evt OnBulletHitEnemy = new Evt();
 
     #endregion
 
