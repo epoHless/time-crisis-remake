@@ -89,7 +89,7 @@ public class CheckpointManager : MonoBehaviour
                 EventManager.OnTimeAdded?.Invoke(15);
             }
             else 
-                EventManager.OnGameOver?.Invoke("Completed");
+                EventManager.OnGameOver?.Invoke("completed");
         }
     }
 

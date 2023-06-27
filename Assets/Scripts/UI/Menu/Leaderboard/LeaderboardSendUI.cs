@@ -15,7 +15,7 @@ public class LeaderboardSendUI : MonoBehaviour
 
     [SerializeField] private TMP_Text result;
 
-    private float finalTime;
+    private double finalTime;
     private RectTransform rectTransform;
 
     private bool sent;
@@ -52,6 +52,10 @@ public class LeaderboardSendUI : MonoBehaviour
     private void StoreTime(TimerTick _timer)
     {
         finalTime = _timer.Seconds;
+        finalTime = Math.Round(finalTime, 2);
+        finalTime *= 1000;
+        
+        Debug.Log((int)finalTime);
     }
 
     private void SendData()

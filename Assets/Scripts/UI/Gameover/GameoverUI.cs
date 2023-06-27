@@ -2,6 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup)), DisallowMultipleComponent]
 public class GameoverUI : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameoverUI : MonoBehaviour
     [SerializeField] private TMP_Text time;
     [SerializeField] private TMP_Text info;
 
+    [SerializeField] private Button btn_sendToLeaderboard;
+    
     private CanvasGroup canvasGroup;
     
     private int shotsFired;
@@ -28,6 +31,7 @@ public class GameoverUI : MonoBehaviour
         EventManager.OnBulletHit.AddListener(CountHit);
         
         EventManager.OnGameOver.AddListener(OnGameOver);
+        EventManager.OnMenuRequested.AddListener(FadeOut);
     }
 
     private void OnDisable()
@@ -57,10 +61,26 @@ public class GameoverUI : MonoBehaviour
     private void OnGameOver(string _value)
     {
         info.text = $"area {_value}";
+
+        bool result = _value == "completed";
+        btn_sendToLeaderboard.gameObject.SetActive(result);
+        
         DOTween.Sequence().AppendInterval(1f).Append(canvasGroup.DOFade(1, .25f));
 
         canvasGroup.blocksRaycasts = true;
         canvasGroup.interactable = true;
+    }
+    
+    private void FadeOut()
+    {
+        canvasGroup.DOFade(0, .25f);
+        ToggleCanvasGroup(false);
+    }
+    
+    private void ToggleCanvasGroup(bool _value)
+    {
+        canvasGroup.interactable = _value;
+        canvasGroup.blocksRaycasts = _value;
     }
     
     private void CountFired(int _value)

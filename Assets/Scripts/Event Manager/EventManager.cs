@@ -16,9 +16,16 @@ public static class EventManager
     public static Evt<List<PlayerLeaderboardEntry>> OnLeaderboardGet = new Evt<List<PlayerLeaderboardEntry>>();
 
     #endregion
+
+    #region Menu Events
+
+    public static Evt OnMenuRequested = new Evt();
+
+    #endregion
     
     #region Game Events
 
+    public static Evt OnGameStart = new Evt();
     public static Evt<string> OnGameOver = new Evt<string>();
 
     #endregion

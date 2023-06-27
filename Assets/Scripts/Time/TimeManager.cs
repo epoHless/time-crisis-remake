@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
     private TimerTick countdownTimer;
     private TimerTick playerTimer;
 
-    private bool tick = true;
+    private bool tick;
     
     #endregion
 
@@ -22,16 +22,25 @@ public class TimeManager : MonoBehaviour
         playerTimer = new TimerTick(0);
     }
 
+    private void Start()
+    {
+        tick = false;
+    }
+
     private void OnEnable()
     {
         EventManager.OnTimeAdded.AddListener(OnTimeAdded);
         EventManager.OnGameOver.AddListener(SendFinalTime);
+        
+        EventManager.OnGameStart.AddListener(StartTick);
     }
 
     private void OnDisable()
     {
         EventManager.OnTimeAdded.RemoveListener(OnTimeAdded);
         EventManager.OnGameOver.RemoveListener(SendFinalTime);
+        
+        EventManager.OnGameStart.RemoveListener(StartTick);
     }
 
     private void Update()
@@ -49,6 +58,11 @@ public class TimeManager : MonoBehaviour
 
     #region Event Methods
 
+    private void StartTick()
+    {
+        tick = true;
+    }
+    
     private void OnTimeAdded(float _time)
     {
         countdownTimer.Add(_time);

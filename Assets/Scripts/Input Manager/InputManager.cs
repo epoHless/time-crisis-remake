@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public static class InputManager
@@ -16,20 +17,31 @@ public static class InputManager
         Init();
     }
 
+#if UNITY_EDITOR
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+#endif
     private static void Init()
     {
-        if (_isInit) return;
-        
-        _inputActions ??= new PlayerInputActions();
-        _inputActions.Enable();
-        _isInit = true;
-        
-        EventManager.OnGameOver.AddListener(s =>
+        if (!_isInit)
         {
-            ToggleShoot(false);
-            ToggleCover(false);
-            ToggleReload(false);
-        });
+            _inputActions ??= new PlayerInputActions();
+            _isInit = true;
+
+            EventManager.OnGameStart.AddListener(() =>
+            {
+                _inputActions.Enable();
+                ToggleInputs(true);
+            });
+            
+            EventManager.OnGameOver.AddListener(s => { ToggleInputs(false); });
+        }
+    }
+
+    private static void ToggleInputs(bool _value)
+    {
+        ToggleShoot(_value);
+        ToggleCover(_value);
+        ToggleReload(_value);
     }
 
     public static void ToggleShoot(bool _value)
