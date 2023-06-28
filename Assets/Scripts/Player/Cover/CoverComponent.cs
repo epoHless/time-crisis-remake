@@ -19,22 +19,22 @@ public class CoverComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Player.Cover.performed += Cover;
+        InputManager.Player.Cover.started += Cover;
         InputManager.Player.Cover.canceled += Uncover;
         
-        EventManager.OnCheckpointCleared.AddListener(DisableCover);
-        EventManager.OnCheckpointStart.AddListener(EnableCover);
+        // EventManager.OnCheckpointCleared.AddListener(DisableCover);
+        // EventManager.OnCheckpointStart.AddListener(EnableCover);
         
         EventManager.OnPeekChanged.AddListener(ChangePeek);
     }
 
     private void OnDisable()
     {
-        InputManager.Player.Cover.performed -= Cover;
+        InputManager.Player.Cover.started -= Cover;
         InputManager.Player.Cover.canceled -= Uncover;
         
-        EventManager.OnCheckpointCleared.RemoveListener(DisableCover);
-        EventManager.OnCheckpointStart.RemoveListener(EnableCover);
+        // EventManager.OnCheckpointCleared.RemoveListener(DisableCover);
+        // EventManager.OnCheckpointStart.RemoveListener(EnableCover);
         
         EventManager.OnPeekChanged.RemoveListener(ChangePeek);
     }

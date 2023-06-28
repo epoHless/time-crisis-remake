@@ -319,11 +319,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Creator: {fileID: 1827207723}
-  tollerance: 0.15
+  tollerance: 0.1
   lookForward: 0
   duration: 20
   mode: 0
-  move: 1
 --- !u!4 &192875504
 Transform:
   m_ObjectHideFlags: 0
@@ -55823,7 +55822,6 @@ MonoBehaviour:
   lookForward: 0
   duration: 5
   mode: 2
-  move: 0
 --- !u!23 &8288928039011867740
 MeshRenderer:
   m_ObjectHideFlags: 0

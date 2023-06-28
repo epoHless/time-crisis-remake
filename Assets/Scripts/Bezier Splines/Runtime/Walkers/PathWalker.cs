@@ -17,7 +17,7 @@ public class PathWalker : MonoBehaviour
     public SplineWalkerMode mode;
     private bool goingForward = true;
 
-    public bool move;
+    public virtual bool Move { get; set; }
 
     #endregion
 
@@ -25,7 +25,7 @@ public class PathWalker : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!move) return;
+        if (!Move) return;
         
         if (goingForward) 
         {

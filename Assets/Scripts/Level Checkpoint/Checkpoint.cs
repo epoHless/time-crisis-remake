@@ -67,7 +67,7 @@ public class Checkpoint
         if (currentWave.entities.Contains(_entity)) currentWave.entities.Remove(_entity);
     }
 
-    public bool IsCleared()
+    public bool IsWaveCleared()
     {
         var enemies = currentWave.entities.Where(entity => entity is Enemy).ToList();
         return enemies.Count <= 0;

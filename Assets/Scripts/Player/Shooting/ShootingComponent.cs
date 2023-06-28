@@ -22,22 +22,22 @@ public class ShootingComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Player.Shoot.performed += Shoot;
-        InputManager.Player.Reload.performed += Reload;
+        InputManager.Player.Shoot.started += Shoot;
+        InputManager.Player.Reload.started += Reload;
         
-        EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
-        EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
+        // EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
+        // EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
         
         EventManager.OnGameStart.AddListener(OnStart);
     }
 
     private void OnDisable()
     {
-        InputManager.Player.Shoot.performed -= Shoot;
-        InputManager.Player.Reload.performed -= Reload;
+        InputManager.Player.Shoot.started -= Shoot;
+        InputManager.Player.Reload.started -= Reload;
         
-        EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
-        EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
+        // EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
+        // EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
         
         EventManager.OnGameStart.RemoveListener(OnStart);
     }

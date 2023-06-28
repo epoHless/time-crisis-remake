@@ -44,6 +44,8 @@ public static class EventManager
     #region Walker Events
 
     public static Evt<Vector3> OnCheckpointReached = new Evt<Vector3>();
+    public static Evt<Vector3> OnCheckpointChanged = new Evt<Vector3>();
+    
     public static Evt<Vector3> OnPeekChanged = new Evt<Vector3>();
 
     #endregion

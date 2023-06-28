@@ -1,35 +1,42 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerPathWalker : PathWalker
 {
+    private Vector3 destination;
+    
     #region Unity Methods
 
     private void Awake()
     {
-        move = false;
+        Move = false;
     }
 
     private void OnEnable()
     {
-        EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
+        EventManager.OnCheckpointReached.AddListener(OnCheckpointReached);
         EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
-        
+        EventManager.OnCheckpointChanged.AddListener(SetDestination);
+
         EventManager.OnGameStart.AddListener(OnCheckpointCleared);
     }
-
+    
     private void OnDisable()
     {
-        EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
+        EventManager.OnCheckpointReached.RemoveListener(OnCheckpointReached);
         EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
-        
+        EventManager.OnCheckpointChanged.RemoveListener(SetDestination);
+
         EventManager.OnGameStart.RemoveListener(OnCheckpointCleared);
     }
     protected override void Update()
     {
+        if (!Move) return;
+        
         base.Update();
 
-        if (Vector3.Distance(transform.localPosition, position) <= tollerance)
+        Debug.Log($"{Vector3.Distance(transform.localPosition, destination)}");
+        
+        if (Vector3.Distance(transform.localPosition, destination) <= tollerance)
         {
             EventManager.OnCheckpointReached?.Invoke(position);
         }
@@ -39,14 +46,20 @@ public class PlayerPathWalker : PathWalker
     
     #region Methods
 
+    private void SetDestination(Vector3 obj)
+    {
+        destination = obj;
+        Debug.Log($"next destination is {destination}");
+    }
+    
     private void OnCheckpointCleared()
     {
-        move = true;
+        Move = true;
     }
 
-    private void OnCheckpointStart()
+    private void OnCheckpointReached(Vector3 obj)
     {
-        move = false;
+        Move = false;
     }
 
     #endregion

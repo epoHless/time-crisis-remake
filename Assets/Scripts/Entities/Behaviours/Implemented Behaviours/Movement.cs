@@ -13,7 +13,7 @@ namespace Entities
             set
             {
                 isEnabled = value;
-                walker.move = isEnabled;
+                walker.Move = isEnabled;
             }
         }
 

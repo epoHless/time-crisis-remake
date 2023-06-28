@@ -29,14 +29,23 @@ public static class InputManager
             _inputActions ??= new PlayerInputActions();
             _isInit = true;
 
-            EventManager.OnGameStart.AddListener(() =>
+            ToggleInputs(false);
+            
+            EventManager.OnCheckpointReached.AddListener(vector3 =>
             {
                 _inputActions.Enable();
                 enabled = true;
+                Debug.Log($"Reached!");
                 ToggleInputs(true);
             });
             
             EventManager.OnGameOver.AddListener(s =>
+            {
+                ToggleInputs(false);
+                enabled = false;
+            });
+            
+            EventManager.OnCheckpointCleared.AddListener(() =>
             {
                 ToggleInputs(false);
                 enabled = false;
@@ -49,8 +58,8 @@ public static class InputManager
         if (!enabled) return;
         
         ToggleShoot(_value);
-        ToggleCover(_value);
         ToggleReload(_value);
+        ToggleCover(_value);
     }
 
     public static void ToggleShoot(bool _value)

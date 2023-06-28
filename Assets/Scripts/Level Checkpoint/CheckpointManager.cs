@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BezierSplines;
 using UnityEngine;
 
@@ -9,7 +10,10 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField] private PathCreator creator;
 
     [SerializeField] private List<Checkpoint> checkpoints;
+    private List<Checkpoint> Checkpoints => checkpoints.Where(checkpoint => checkpoint.TriggerArea).ToList();
+    
     [SerializeField] private Checkpoint currentCheckpoint;
+    private Checkpoint lastCheckpoint;
 
     #endregion
 
@@ -21,7 +25,6 @@ public class CheckpointManager : MonoBehaviour
         set
         {
             creator = value;
-
             SetControlPoints();
         }
     }
@@ -32,7 +35,13 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
-        if(checkpoints.Count == 0) SetControlPoints();
+        if(Checkpoints.Count == 0) SetControlPoints();
+    }
+
+    private void Start()
+    {
+        EventManager.OnCheckpointChanged?.Invoke(Checkpoints[0].point);
+        lastCheckpoint = Checkpoints[^1];
     }
 
     private void OnEnable()
@@ -53,7 +62,13 @@ public class CheckpointManager : MonoBehaviour
 
     private void OnCheckpointReached(Vector3 position)
     {
-        var checkpoint = checkpoints.Find(_checkpoint => Vector3.Distance(_checkpoint.point, position) <= 0.1f);
+        if (currentCheckpoint == lastCheckpoint && !currentCheckpoint.HasWavesLeft())
+        {
+            EventManager.OnGameOver?.Invoke("completed");
+            return;
+        }
+        
+        var checkpoint = Checkpoints.Find(_checkpoint => Vector3.Distance(_checkpoint.point, position) <= 0.1f);
 
         if (checkpoint != null)
         {
@@ -67,7 +82,17 @@ public class CheckpointManager : MonoBehaviour
                 EventManager.OnPeekChanged?.Invoke(currentCheckpoint.PeekDirection);
             }
 
-            checkpoints.Remove(checkpoint);
+            if (Checkpoints.Count > Checkpoints.IndexOf(currentCheckpoint) + 1)
+            {
+                var next = Checkpoints[Checkpoints.IndexOf(currentCheckpoint) + 1];
+
+                if (next != null && next.TriggerArea)
+                {
+                    EventManager.OnCheckpointChanged?.Invoke(next.point);
+                }
+            }
+
+            Checkpoints.Remove(checkpoint);
         }
     }
     
@@ -77,13 +102,13 @@ public class CheckpointManager : MonoBehaviour
         
         currentCheckpoint.RemoveEntity(_enemy);
             
-        if (currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
+        if (currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsWaveCleared())
         {
             currentCheckpoint.Initialise();
         }
-        else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsCleared())
+        else if (!currentCheckpoint.HasWavesLeft() && currentCheckpoint.IsWaveCleared())
         {
-            if(checkpoints.Count > 1)
+            if(Checkpoints.Count > 0)
             {
                 EventManager.OnCheckpointCleared?.Invoke();
                 EventManager.OnTimeAdded?.Invoke(15);
@@ -100,15 +125,15 @@ public class CheckpointManager : MonoBehaviour
     [ContextMenu("Add Control Points")]
     public void SetControlPoints()
     {
-        if (!creator) return;
-        
-        var controlPoints = creator.path.GetControlPoints();
-        checkpoints = new List<Checkpoint>();
-
-        foreach (var controlPoint in controlPoints)
-        {
-            checkpoints.Add(new Checkpoint(controlPoint));
-        }
+        // if (!creator) return;
+        //
+        // var controlPoints = creator.path.GetControlPoints();
+        // checkpoints = new List<Checkpoint>();
+        //
+        // foreach (var controlPoint in controlPoints)
+        // {
+        //     Checkpoints.Add(new Checkpoint(controlPoint));
+        // }
     }
 
     #endregion

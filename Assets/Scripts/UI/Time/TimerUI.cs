@@ -19,14 +19,18 @@ public class TimerUI : MonoBehaviour
 
     private void OnEnable()
     {
+        EventManager.OnMenuRequested.AddListener(ResetValues);
+        
         EventManager.OnCountdownTick.AddListener(OnCountdownTick);
         EventManager.OnTimeTick.AddListener(OnTimeTick);
         
         EventManager.OnTimeAdded.AddListener(OnCheckpointCleared);
     }
-    
+
     private void OnDisable()
     {
+        EventManager.OnMenuRequested.AddListener(ResetValues);
+        
         EventManager.OnCountdownTick.RemoveListener(OnCountdownTick);
         EventManager.OnTimeTick.RemoveListener(OnTimeTick);
         
@@ -37,15 +41,21 @@ public class TimerUI : MonoBehaviour
 
     #region Event Methods
 
+    private void ResetValues()
+    {
+        playerTime.text = "00.00.00";
+        countdownTime.text = "00.00.00";
+    }
+    
     private void OnTimeTick(TimerTick _time)
     {
-        playerText = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        playerText = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}.{(_time.Seconds % 60).ToString("00.00")}";
         playerTime.text = playerText;
     }
 
     private void OnCountdownTick(TimerTick _time)
     {
-        countdownText = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}:{(_time.Seconds % 60).ToString("00.00")}";
+        countdownText = $"{Mathf.Floor(_time.Seconds / 60).ToString("00")}.{(_time.Seconds % 60).ToString("00.00")}";
         countdownTime.text = countdownText;
     }
     
