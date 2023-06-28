@@ -31,8 +31,9 @@ public class LeaderboardSendUI : MonoBehaviour
         
         EventManager.OnFinalTimeRequested.AddListener(StoreTime);
         EventManager.OnUsernameSet.AddListener(SendData);
-        
         EventManager.OnLeaderboardUpdated.AddListener(SendResult);
+        
+        EventManager.OnMenuRequested.AddListener(OnMenuRequested);
     }
 
     private void OnDisable()
@@ -43,8 +44,9 @@ public class LeaderboardSendUI : MonoBehaviour
         
         EventManager.OnFinalTimeRequested.RemoveListener(StoreTime);
         EventManager.OnUsernameSet.RemoveListener(SendData);
-        
         EventManager.OnLeaderboardUpdated.RemoveListener(SendResult);
+        
+        EventManager.OnMenuRequested.RemoveListener(OnMenuRequested);
     }
 
     private void StoreTime(TimerTick _timer)
@@ -54,6 +56,11 @@ public class LeaderboardSendUI : MonoBehaviour
         finalTime *= 1000;
     }
 
+    private void OnMenuRequested()
+    {
+        btn_open.interactable = true;
+    }
+    
     private void SendData()
     {
         if (inputField.text == "" || sent) return;
@@ -63,15 +70,19 @@ public class LeaderboardSendUI : MonoBehaviour
     private void SendData(string obj)
     {
         PlayfabManager.SendLeaderboard((int)finalTime);
-
-        ClosePanel();
-        sent = true;
     }
 
     private void SendResult(string obj)
     {
+        btn_open.interactable = false;
+        
         result.text = $"Your score has been registered!";
-        result.DOFade(1, 0.5f).SetLoops(2, LoopType.Yoyo);
+        
+        result.DOFade(1, 0.75f).SetLoops(2, LoopType.Yoyo).onComplete += () =>
+        {
+            ClosePanel();
+            sent = true;
+        };
     }
     
     private void OpenPanel()

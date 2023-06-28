@@ -34,8 +34,6 @@ public class PlayerPathWalker : PathWalker
         
         base.Update();
 
-        Debug.Log($"{Vector3.Distance(transform.localPosition, destination)}");
-        
         if (Vector3.Distance(transform.localPosition, destination) <= tollerance)
         {
             EventManager.OnCheckpointReached?.Invoke(position);
