@@ -35,7 +35,6 @@ public static class InputManager
             {
                 _inputActions.Enable();
                 enabled = true;
-                Debug.Log($"Reached!");
                 ToggleInputs(true);
             });
             

@@ -23,7 +23,6 @@ public static class PlayfabManager
 
     private static void OnSuccess(LoginResult obj)
     {
-        Debug.Log($"Logged in!");
         EventManager.OnLoginSuccess.Invoke($"{obj.PlayFabId}");
     }
 

@@ -47,7 +47,6 @@ public class PlayerPathWalker : PathWalker
     private void SetDestination(Vector3 obj)
     {
         destination = obj;
-        Debug.Log($"next destination is {destination}");
     }
     
     private void OnCheckpointCleared()
