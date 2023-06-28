@@ -81,7 +81,7 @@ public class ShootingComponent : MonoBehaviour
             if (hit.transform.TryGetComponent(out IDamageable damageable))
             {
                 damageable.TakeDamage(1);
-                EventManager.OnBulletHitEnemy?.Invoke();
+                EventManager.OnBulletHitEntity?.Invoke();
             }
             
             EventManager.OnBulletHit?.Invoke(hit.point);

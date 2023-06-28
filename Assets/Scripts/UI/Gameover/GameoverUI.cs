@@ -28,7 +28,7 @@ public class GameoverUI : MonoBehaviour
     {
         EventManager.OnFinalTimeRequested.AddListener(UpdateData);
         EventManager.OnBulletFired.AddListener(CountFired);
-        EventManager.OnBulletHitEnemy.AddListener(CountHit);
+        EventManager.OnBulletHitEntity.AddListener(CountHit);
         
         EventManager.OnGameOver.AddListener(OnGameOver);
         EventManager.OnMenuRequested.AddListener(FadeOut);
@@ -38,7 +38,7 @@ public class GameoverUI : MonoBehaviour
     {
         EventManager.OnFinalTimeRequested.RemoveListener(UpdateData);
         EventManager.OnBulletFired.RemoveListener(CountFired);
-        EventManager.OnBulletHitEnemy.RemoveListener(CountHit);
+        EventManager.OnBulletHitEntity.RemoveListener(CountHit);
         
         EventManager.OnGameOver.RemoveListener(OnGameOver);
         EventManager.OnMenuRequested.RemoveListener(FadeOut);

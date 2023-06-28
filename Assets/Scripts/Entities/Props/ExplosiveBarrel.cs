@@ -36,6 +36,7 @@ namespace Entities
             }
             
             PlayParticle();
+            EventManager.OnExplosion?.Invoke();
 
             Sequence ??= DOTween.Sequence()
                 .Append(mesh.transform.DOScale(Vector3.zero, .2f).SetEase(Ease.InOutBounce))

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using DG.Tweening;
-using PlayFab;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

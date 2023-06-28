@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using PlayFab.ClientModels;
 using UnityEngine;
 
@@ -69,7 +68,7 @@ public static class EventManager
     public static Evt OnReload = new Evt();
     
     public static Evt<Vector3> OnBulletHit = new Evt<Vector3>();
-    public static Evt OnBulletHitEnemy = new Evt();
+    public static Evt OnBulletHitEntity = new Evt();
 
     #endregion
 
@@ -82,6 +81,7 @@ public static class EventManager
     #region Enemies Events
 
     public static Evt<Transform> OnBulletRequested = new Evt<Transform>();
+    public static Evt OnExplosion = new Evt();
 
     #endregion
 

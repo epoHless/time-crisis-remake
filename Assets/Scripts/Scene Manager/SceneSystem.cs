@@ -1,9 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class SceneSystem
 {
+    #if !UNITY_EDITOR
+    
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void LoadEnvironment()
     {
@@ -18,4 +19,6 @@ public static class SceneSystem
             };
         };
     }
+    
+    #endif
 }
