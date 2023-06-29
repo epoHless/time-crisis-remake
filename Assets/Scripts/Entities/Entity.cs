@@ -1,5 +1,4 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 namespace Entities
@@ -37,7 +36,6 @@ namespace Entities
         }
         
         public void Enable() => IsActive = true;
-        public void Disable() => IsActive = false;
 
         protected virtual void Initialise() {}
 

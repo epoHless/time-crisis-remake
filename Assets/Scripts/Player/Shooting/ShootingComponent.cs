@@ -25,9 +25,6 @@ public class ShootingComponent : MonoBehaviour
         InputManager.Player.Shoot.started += Shoot;
         InputManager.Player.Reload.started += Reload;
         
-        // EventManager.OnCheckpointCleared.AddListener(OnCheckpointCleared);
-        // EventManager.OnCheckpointStart.AddListener(OnCheckpointStart);
-        
         EventManager.OnGameStart.AddListener(OnStart);
     }
 
@@ -35,9 +32,6 @@ public class ShootingComponent : MonoBehaviour
     {
         InputManager.Player.Shoot.started -= Shoot;
         InputManager.Player.Reload.started -= Reload;
-        
-        // EventManager.OnCheckpointCleared.RemoveListener(OnCheckpointCleared);
-        // EventManager.OnCheckpointStart.RemoveListener(OnCheckpointStart);
         
         EventManager.OnGameStart.RemoveListener(OnStart);
     }
@@ -50,18 +44,6 @@ public class ShootingComponent : MonoBehaviour
     #endregion
 
     #region Event Methods
-
-    private void OnCheckpointCleared()
-    {
-        InputManager.ToggleShoot(false);
-        InputManager.ToggleReload(false);
-    }
-    
-    private void OnCheckpointStart()
-    {
-        InputManager.ToggleShoot(true);
-        InputManager.ToggleReload(true);
-    }
     
     private void OnStart()
     {

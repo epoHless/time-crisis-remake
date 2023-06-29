@@ -12,7 +12,6 @@ public static class Utilities
         private set => _playerTransform = value;
     }
 
-    private static bool _isInit = false;
     private static Transform _playerTransform;
 
     static Utilities()

@@ -22,9 +22,6 @@ public class CoverComponent : MonoBehaviour
         InputManager.Player.Cover.started += Cover;
         InputManager.Player.Cover.canceled += Uncover;
         
-        // EventManager.OnCheckpointCleared.AddListener(DisableCover);
-        // EventManager.OnCheckpointStart.AddListener(EnableCover);
-        
         EventManager.OnPeekChanged.AddListener(ChangePeek);
     }
 
@@ -32,9 +29,6 @@ public class CoverComponent : MonoBehaviour
     {
         InputManager.Player.Cover.started -= Cover;
         InputManager.Player.Cover.canceled -= Uncover;
-        
-        // EventManager.OnCheckpointCleared.RemoveListener(DisableCover);
-        // EventManager.OnCheckpointStart.RemoveListener(EnableCover);
         
         EventManager.OnPeekChanged.RemoveListener(ChangePeek);
     }
@@ -57,16 +51,6 @@ public class CoverComponent : MonoBehaviour
         
         camera.transform.DOLocalMove(peekDirection, 0.25f);
         collider.enabled = false;
-    }
-    
-    private void DisableCover()
-    {
-        InputManager.ToggleCover(false);
-    }
-    
-    private void EnableCover()
-    {
-        InputManager.ToggleCover(true);
     }
     
     private void ChangePeek(Vector3 _direction)

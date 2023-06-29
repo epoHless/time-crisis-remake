@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +31,10 @@ public class HealthUI : MonoBehaviour
     private void OnDamageTaken(int _currentHealth)
     {
         rectTransforms[_currentHealth].gameObject.SetActive(false);
-        hitImage.DOFade(.2f, 0.15f).SetLoops(2, LoopType.Yoyo);
+        
+        hitImage.DOFade(.2f, 0.15f).SetLoops(2, LoopType.Yoyo).onComplete += () =>
+        {
+            if (hitImage.color.a > 0) hitImage.DOFade(0, 0.05f);
+        };
     }
 }

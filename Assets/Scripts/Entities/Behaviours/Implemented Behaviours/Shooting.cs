@@ -6,8 +6,8 @@ namespace Entities
     {
         [SerializeField] private Transform muzzle;
         
-        private readonly float minFireRate = 0.5f;
-        private readonly float maxFireRate = 2f;
+        private readonly float minFireRate = 1f;
+        private readonly float maxFireRate = 4f;
 
         private float currentTimer;
 

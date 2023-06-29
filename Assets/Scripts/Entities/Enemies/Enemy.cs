@@ -28,7 +28,7 @@ namespace Entities
 
         private void OnDisable()
         {
-            EventManager.OnGameOver.AddListener(Deactivate);
+            EventManager.OnGameOver.RemoveListener(Deactivate);
         }
 
         protected virtual void Start()
