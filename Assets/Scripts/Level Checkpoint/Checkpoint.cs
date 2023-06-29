@@ -58,7 +58,6 @@ public class Checkpoint
     public bool Contains(Entity _entity)
     {
         if (currentWave.entities.Contains(_entity)) return true;
-
         return false;
     }
 

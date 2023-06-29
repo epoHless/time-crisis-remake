@@ -57,7 +57,7 @@ public class LeaderboardManager : ObjectPooler<LeaderboardManager>
         }
     }
     
-    private void UpdateLeaderboard(string obj)
+    public void UpdateLeaderboard(string obj)
     {
         PlayfabManager.GetLeaderboard();
     }
