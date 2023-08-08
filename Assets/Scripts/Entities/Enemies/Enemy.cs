@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -34,6 +33,7 @@ namespace Entities
         protected virtual void Start()
         {
             transform.localScale = Vector3.zero;
+            Collider.enabled = false;
         }
 
         private void Update()
@@ -59,7 +59,13 @@ namespace Entities
 
         protected override void Initialise()
         {
-            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).onComplete += () => { ToggleBehaviours(true); };
+            gameObject.SetActive(true);
+            
+            transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).onComplete += () =>
+            {
+                ToggleBehaviours(true);
+                Collider.enabled = true;
+            };
 
             var position = Utilities.PlayerTransform.position;
             position.y = transform.position.y;

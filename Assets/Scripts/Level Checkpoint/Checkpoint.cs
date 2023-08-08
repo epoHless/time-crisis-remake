@@ -21,7 +21,7 @@ public class Checkpoint
     [SerializeField] private List<Wave> waves;
     
     private Vector3 peekDirection;
-    private Wave currentWave;
+    [SerializeField] private Wave currentWave;
 
     [HideInInspector] public Vector3 point;
 

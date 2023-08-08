@@ -20,7 +20,7 @@ namespace Entities
 
         public override void OnDeath()
         {
-            base.OnDeath();
+            // base.OnDeath();
 
             var colliders = Physics.OverlapSphere(transform.position, explosionRange);
 

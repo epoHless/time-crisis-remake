@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public static class SceneSystem
 {
-    #if UNITY_EDITOR
+    #if !UNITY_EDITOR
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void LoadEnvironment()

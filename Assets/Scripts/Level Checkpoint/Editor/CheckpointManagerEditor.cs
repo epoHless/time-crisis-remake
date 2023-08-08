@@ -15,7 +15,6 @@ public class CheckpointManagerEditor : Editor
         if (GUILayout.Button("Set Control Points"))
         {
             script.Creator.SetY();
-            script.SetControlPoints();
         }
     }
 }

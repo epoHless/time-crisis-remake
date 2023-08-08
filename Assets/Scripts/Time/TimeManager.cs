@@ -29,6 +29,8 @@ public class TimeManager : MonoBehaviour
 
     private void OnEnable()
     {
+        EventManager.OnCountdownTick.AddListener(OnTick);
+        
         EventManager.OnTimeAdded.AddListener(OnTimeAdded);
         EventManager.OnGameOver.AddListener(SendFinalTime);
         
@@ -37,6 +39,8 @@ public class TimeManager : MonoBehaviour
 
     private void OnDisable()
     {
+        EventManager.OnCountdownTick.RemoveListener(OnTick);
+        
         EventManager.OnTimeAdded.RemoveListener(OnTimeAdded);
         EventManager.OnGameOver.RemoveListener(SendFinalTime);
         
@@ -58,6 +62,14 @@ public class TimeManager : MonoBehaviour
 
     #region Event Methods
 
+    private void OnTick(TimerTick _timer)
+    {
+        if (_timer.Seconds <= 0)
+        {
+            EventManager.OnGameOver?.Invoke("failed");
+        }
+    }
+    
     private void StartTick()
     {
         tick = true;

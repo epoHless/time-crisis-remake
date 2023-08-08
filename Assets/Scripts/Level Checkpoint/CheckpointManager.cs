@@ -10,6 +10,7 @@ public class CheckpointManager : MonoBehaviour
     [SerializeField] private PathCreator creator;
 
     [SerializeField] private List<Checkpoint> checkpoints;
+    [SerializeField] private List<Checkpoint> actualCheckpoints;
     private List<Checkpoint> Checkpoints => checkpoints.Where(checkpoint => checkpoint.TriggerArea).ToList();
     
     [SerializeField] private Checkpoint currentCheckpoint;
@@ -25,7 +26,6 @@ public class CheckpointManager : MonoBehaviour
         set
         {
             creator = value;
-            SetControlPoints();
         }
     }
 
@@ -35,7 +35,7 @@ public class CheckpointManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Checkpoints.Count == 0) SetControlPoints();
+        actualCheckpoints = Checkpoints;
     }
 
     private void Start()
@@ -74,7 +74,7 @@ public class CheckpointManager : MonoBehaviour
         {
             currentCheckpoint = checkpoint;
 
-            if (checkpoint.TriggerArea)
+            if (currentCheckpoint.TriggerArea)
             {
                 currentCheckpoint.Initialise();
                 
@@ -116,24 +116,6 @@ public class CheckpointManager : MonoBehaviour
             else 
                 EventManager.OnGameOver?.Invoke("completed");
         }
-    }
-
-    #endregion
-
-    #region Methods
-
-    [ContextMenu("Add Control Points")]
-    public void SetControlPoints()
-    {
-        // if (!creator) return;
-        //
-        // var controlPoints = creator.path.GetControlPoints();
-        // checkpoints = new List<Checkpoint>();
-        //
-        // foreach (var controlPoint in controlPoints)
-        // {
-        //     Checkpoints.Add(new Checkpoint(controlPoint));
-        // }
     }
 
     #endregion
